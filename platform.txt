@@ -25,11 +25,11 @@ version=1.7.5
 # Compile variables
 # -----------------
 
-compiler.warning_flags=-w
-compiler.warning_flags.none=-w
-compiler.warning_flags.default=
-compiler.warning_flags.more=-Wall -Wno-expansion-to-defined
-compiler.warning_flags.all=-Wall -Wextra -Wno-expansion-to-defined
+compiler.warning_flags=-Werror=return-type
+compiler.warning_flags.none=-Werror=return-type
+compiler.warning_flags.default=-Werror=return-type
+compiler.warning_flags.more=-Wall -Werror=return-type -Wno-expansion-to-defined
+compiler.warning_flags.all=-Wall -Wextra -Werror=return-type -Wno-expansion-to-defined
 
 compiler.path={runtime.tools.arm-none-eabi-gcc.path}/bin/
 compiler.c.cmd=arm-none-eabi-gcc
