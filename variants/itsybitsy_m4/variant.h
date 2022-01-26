@@ -84,6 +84,10 @@ extern "C"
 #define PIN_LED_13           (13u)
 #define PIN_LED              PIN_LED_13
 #define LED_BUILTIN          PIN_LED_13
+// DotStar LED
+#define PIN_DOTSTAR_DATA     (8u)
+#define PIN_DOTSTAR_CLK      (6u)
+#define DOTSTAR_NUM          (1u)
 
 /*
  * Analog pins
@@ -137,7 +141,7 @@ static const uint8_t ATN = PIN_ATN;
 #define PAD_SPI_TX           SPI_PAD_0_SCK_1
 #define PAD_SPI_RX           SERCOM_RX_PAD_3
 
-static const uint8_t SS	  = PIN_A2 ;	
+static const uint8_t SS	  = PIN_A2 ;
 static const uint8_t MOSI = PIN_SPI_MOSI ;
 static const uint8_t MISO = PIN_SPI_MISO ;
 static const uint8_t SCK  = PIN_SPI_SCK ;
