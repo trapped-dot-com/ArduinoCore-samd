@@ -47,12 +47,6 @@ mcu_dict = {
 }
 
 
-def get_mcu(name):
-    if name == 'feather52832':
-        return 52832
-    else:
-        return 52840
-
 def build_header(mcu, name, vendor, product, vid, pid_list):
     prettyname = vendor + " " + product + " ({})".format(mcu)
     print()
