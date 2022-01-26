@@ -81,9 +81,9 @@ extern "C"
 #define PIN_LED              PIN_LED_13
 #define LED_BUILTIN          PIN_LED_13
 // DotStar LED
-#define PIN_DOTSTAR_DATA     41
-#define PIN_DOTSTAR_CLK      40
-#define DOTSTAR_NUM          1
+#define PIN_DOTSTAR_DATA     (41u)
+#define PIN_DOTSTAR_CLK      (40u)
+#define DOTSTAR_NUM          (1u)
 
 /*
  * Analog pins
