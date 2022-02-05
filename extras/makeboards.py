@@ -64,7 +64,7 @@ def build_header(mcu, name, vendor, product, vid, pid_list):
 
 def build_upload(mcu, name, extra_flags):
     print("# Upload")    
-    print("{}.upload.tool=bossac19".format(name))
+    print("{}.upload.tool=bossac18".format(name))
     print("{}.upload.protocol=sam-ba".format(name))
     
     if ('SAMD51P20A' in extra_flags) or ('SAMD51J20A' in extra_flags):
@@ -227,6 +227,10 @@ make_board("SAMD21", "adafruit_crickit_m0", "crickit_m0",
            "Adafruit", "Crickit M0", "0x239A", ["0x802D", "0x002D", "0x802D"],
            "CRICKIT_M0", "-D__SAMD21G18A__ -DCRYSTALLESS -DADAFRUIT_CRICKIT_M0", "crickit/samd21_sam_ba.bin")
 
+make_board("SAMD21", "adafruit_blm_badge", "blm_badge", 
+           "Adafruit", "BLM Badge", "0x239A", ["0x80BF", "0x00BF", "0x80C0"],
+           "BLM_BADGE_M0", "-D__SAMD21E18A__ -DCRYSTALLESS  -DADAFRUIT_BLM_BADGE", "blmbadge/bootloader-blm_badge.bin")
+
 ######################## SAMD51
 
 make_board("SAMD51", "adafruit_metro_m4", "metro_m4", 
@@ -254,7 +258,7 @@ make_board("SAMD51", "adafruit_trellis_m4", "trellis_m4",
            "TRELLIS_M4", "-D__SAMD51G19A__ -DCRYSTALLESS -DADAFRUIT_TRELLIS_M4_EXPRESS", "trellisM4/bootloader-trellis_m4-v2.0.0-adafruit.5.bin")
 
 make_board("SAMD51", "adafruit_pyportal_m4", "pyportal_m4", 
-           "Adafruit", "PyPortal M4", "0x239A", ["0x8035", "0x0035"],
+           "Adafruit", "PyPortal M4", "0x239A", ["0x8035", "0x0035", "0x8036"],
            "PYPORTAL_M4", "-D__SAMD51J20A__ -DCRYSTALLESS -DADAFRUIT_PYPORTAL", "metroM4/bootloader-metro_m4-v2.0.0-adafruit.5.bin")
 
 make_board("SAMD51", "adafruit_pyportal_m4_titano", "pyportal_m4_titano", 
@@ -288,7 +292,3 @@ make_board("SAMD51", "adafruit_hallowing_m4", "hallowing_m4",
 make_board("SAMD51", "adafruit_matrixportal_m4", "matrixportal_m4", 
            "Adafruit", "Matrix Portal M4", "0x239A", ["0x80C9", "0x00C9", "0x80CA"],
            "MATRIXPORTAL_M4", "-D__SAMD51J19A__ -DCRYSTALLESS  -DADAFRUIT_MATRIXPORTAL_M4_EXPRESS", "matrixportalM4/bootloader-matrixportal_m4.bin")
-
-make_board("SAMD21", "adafruit_blm_badge", "blm_badge", 
-           "Adafruit", "BLM Badge", "0x239A", ["0x80BF", "0x00BF", "0x80C0"],
-           "BLM_BADGE_M0", "-D__SAMD21E18A__ -DCRYSTALLESS  -DADAFRUIT_BLM_BADGE", "blmbadge/bootloader-blm_badge.bin")
