@@ -85,10 +85,19 @@ def build_build(mcu, name, variant, vendor, product, vid, pid_list, boarddefine,
     print("{}.build.mcu={}".format(name, mcu_dict[mcu]['build_mcu']))
     print("{}.build.f_cpu={}".format(name, mcu_dict[mcu]['f_cpu']))
     print('{}.build.usb_product="{}"'.format(name, product))
-    print('{}.build.usb_manufacturer="{}"'.format(name, vendor))    
-    print("{}.build.board={}".format(name, boarddefine))    
-    print("{}.build.core=arduino".format(name))    
-    print("{}.build.extra_flags={} {} {{build.usb_flags}}".format(name, extra_flags, mcu_dict[mcu]['extra_flags']))
+    print('{}.build.usb_manufacturer="{}"'.format(name, vendor))
+    print("{}.build.board={}".format(name, boarddefine))
+    print("{}.build.core=arduino".format(name))
+
+    # Due to fastLed issue https://github.com/FastLED/FastLED/issues/1363
+    # although there is a simple fix already https://github.com/FastLED/FastLED/pull/1424
+    # fastLED is not well maintained, and we need to skip ARDUINO_SAMD_ZERO for affected boards
+    # in the long run we should move all of our libraries away from ARDUINO_SAMD_ZERO
+    if variant in [ 'gemma_m0', 'trinket_m0', 'qtpy_m0', 'itsybitsy_m0' ]:
+        print("{}.build.extra_flags={} -DARM_MATH_CM0PLUS {{build.usb_flags}}".format(name, extra_flags))
+    else:
+        print("{}.build.extra_flags={} {} {{build.usb_flags}}".format(name, extra_flags, mcu_dict[mcu]['extra_flags']))
+
     print("{}.build.ldscript=linker_scripts/gcc/flash_with_bootloader.ld".format(name))    
     print("{}.build.openocdscript=openocd_scripts/{}.cfg".format(name, variant))    
     print("{}.build.variant={}".format(name, variant))
