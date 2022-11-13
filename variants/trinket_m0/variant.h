@@ -85,8 +85,11 @@ extern "C"
 #define PIN_LED3             PIN_LED_TXL
 #define LED_BUILTIN          PIN_LED_13
 // DotStar LED
-#define INTERNAL_DS_DATA     7
-#define INTERNAL_DS_CLK      8
+#define INTERNAL_DS_DATA     (7u)
+#define INTERNAL_DS_CLK      (8u)
+#define PIN_DOTSTAR_DATA     (7u)
+#define PIN_DOTSTAR_CLK      (8u)
+#define DOTSTAR_NUM          (1u)
 
 /*
  * Analog pins

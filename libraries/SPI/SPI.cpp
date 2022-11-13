@@ -22,6 +22,11 @@
 #include <wiring_private.h>
 #include <assert.h>
 
+#ifdef USE_TINYUSB
+// For Serial when selecting TinyUSB
+#include <Adafruit_TinyUSB.h>
+#endif
+
 #define SPI_IMODE_NONE   0
 #define SPI_IMODE_EXTINT 1
 #define SPI_IMODE_GLOBAL 2
@@ -332,13 +337,15 @@ void SPIClass::dmaAllocate(void) {
           totalDescriptors * sizeof(DmacDescriptor)))) {
           use_dma = true; // Everything allocated successfully
           extraWriteDescriptors = &extraReadDescriptors[numReadDescriptors];
+
           // Initialize descriptors (copy from first ones)
+          // cast to void* to suppress warning: with no trivial copy-assignment [-Wclass-memaccess]
           for(int i=0; i<numReadDescriptors; i++) {
-            memcpy(&extraReadDescriptors[i], firstReadDescriptor,
+            memcpy((void*) &extraReadDescriptors[i], firstReadDescriptor,
               sizeof(DmacDescriptor));
           }
           for(int i=0; i<numWriteDescriptors; i++) {
-            memcpy(&extraWriteDescriptors[i], firstWriteDescriptor,
+            memcpy((void*) &extraWriteDescriptors[i], firstWriteDescriptor,
               sizeof(DmacDescriptor));
           }
         } // end malloc
@@ -457,6 +464,12 @@ void SPIClass::transfer(const void *txbuf, void *rxbuf, size_t count,
 void SPIClass::waitForTransfer(void) {
   while(dma_busy);
 }
+
+/* returns the current DMA transfer status to allow non-blocking polling */
+bool SPIClass::isBusy(void) {
+  return dma_busy;
+}
+
 
 // End DMA-based SPI transfer() code ---------------------------------------
 

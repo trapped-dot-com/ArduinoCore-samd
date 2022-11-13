@@ -66,11 +66,36 @@
 // #define digitalPinToTimer(P)
 
 
+// Digital pins
+// ----
+#define PIN_D4               (4u)
+#define PIN_D5               (5u)
+#define PIN_D7               (7u)
+#define PIN_D8               (8u)
+#define PIN_D11              (25u)
+#define PIN_D12              (26u)
+#define PIN_D13              (13u)
+
+#define D4                   PIN_D4
+#define D5                   PIN_D5
+#define D7                   PIN_D7
+#define D8                   PIN_D8
+#define D11                  PIN_D11
+#define D12                  PIN_D12
+#define D13                  PIN_D13
+
 // LEDs
 // ----
-#define PIN_LED_13  (13u)
+#define PIN_LED_13  (D13)
 #define PIN_LED     PIN_LED_13
 #define LED_BUILTIN PIN_LED
+
+// Neopixel
+#define PIN_NEOPIXEL  D8
+#define NEOPIXEL_NUM  10
+
+#define PIN_BUTTON1   D4 // Left Button
+#define PIN_BUTTON2   D5 // Right Button
 
 
 //#define PIN_LED_RXL          (25u)
@@ -242,10 +267,7 @@ extern Uart Serial1;
 //
 // SERIAL_PORT_HARDWARE_OPEN  Hardware serial ports which are open for use.  Their RX & TX
 //                            pins are NOT connected to anything by default.
-#define SERIAL_PORT_USBVIRTUAL      SerialUSB
-#define SERIAL_PORT_MONITOR         SerialUSB
+#define SERIAL_PORT_USBVIRTUAL      Serial
+#define SERIAL_PORT_MONITOR         Serial
 #define SERIAL_PORT_HARDWARE        Serial1
 #define SERIAL_PORT_HARDWARE_OPEN   Serial1
-
-// Alias Serial to SerialUSB
-#define Serial                      SerialUSB
