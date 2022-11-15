@@ -196,6 +196,7 @@ extern uint32_t __bss_end__;
 extern uint32_t __StackTop;
 
 /* Exception Table */
+__attribute__ ((used))
 __attribute__ ((section(".isr_vector"))) const DeviceVectors exception_table =
 {
 	/* Configure Initial Stack Pointer, using linker-generated symbols */
@@ -407,6 +408,7 @@ extern uint32_t __bss_end__;
 extern uint32_t __StackTop;
 
 /* Exception Table */
+__attribute__ ((used))
 __attribute__ ((section(".isr_vector"))) const DeviceVectors exception_table =
 {
   /* Configure Initial Stack Pointer, using linker-generated symbols */
