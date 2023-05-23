@@ -225,7 +225,7 @@ make_board("SAMD21", "adafruit_itsybitsy_m0", "itsybitsy_m0",
            "ITSYBITSY_M0", "-D__SAMD21G18A__ -DCRYSTALLESS -DADAFRUIT_ITSYBITSY_M0", "itsybitsyM0/bootloader-itsybitsy_m0-v2.0.0-adafruit.5.bin")
 
 make_board("SAMD21", "adafruit_pirkey", "pirkey", 
-           "Adafruit", "pIRKey", "0x239A", ["0x801E", "0x001E"],
+           "Adafruit", "pIRKey", "0x239A", ["0x8027", "0x0027", "0x8028"],
            "PIRKEY", "-D__SAMD21E18A__ -DCRYSTALLESS -DADAFRUIT_PIRKEY", "pirkey/bootloader-pirkey-v2.0.0-adafruit.5.bin")
 
 make_board("SAMD21", "adafruit_hallowing", "hallowing_m0_express", 
