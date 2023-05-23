@@ -772,9 +772,11 @@ adafruit_pirkey.name=Adafruit pIRKey (SAMD21)
 
 # VID/PID for Bootloader, Arduino & CircuitPython
 adafruit_pirkey.vid.0=0x239A
-adafruit_pirkey.pid.0=0x801E
+adafruit_pirkey.pid.0=0x8027
 adafruit_pirkey.vid.1=0x239A
-adafruit_pirkey.pid.1=0x001E
+adafruit_pirkey.pid.1=0x0027
+adafruit_pirkey.vid.2=0x239A
+adafruit_pirkey.pid.2=0x8028
 
 # Upload
 adafruit_pirkey.upload.tool=bossac18
@@ -798,7 +800,7 @@ adafruit_pirkey.build.openocdscript=openocd_scripts/pirkey.cfg
 adafruit_pirkey.build.variant=pirkey
 adafruit_pirkey.build.variant_system_lib=
 adafruit_pirkey.build.vid=0x239A
-adafruit_pirkey.build.pid=0x801E
+adafruit_pirkey.build.pid=0x8027
 adafruit_pirkey.bootloader.tool=openocd
 adafruit_pirkey.bootloader.file=pirkey/bootloader-pirkey-v2.0.0-adafruit.5.bin
 
