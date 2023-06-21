@@ -48,111 +48,114 @@ mcu_dict = {
 
 
 def build_header(mcu, name, vendor, product, vid, pid_list):
-    prettyname = vendor + " " + product + " ({})".format(mcu)
+    prettyname = f"{vendor} {product} ({mcu})"
     print()
     print("# -----------------------------------")
-    print("# {}".format(prettyname))
+    print(f"# {prettyname}")
     print("# -----------------------------------")
-    print("{}.name={}".format(name, prettyname))
+    print(f"{name}.name={prettyname}")
     print()
 
     print("# VID/PID for Bootloader, Arduino & CircuitPython")
     for i in range(len(pid_list)):
-        print("{}.vid.{}={}".format(name, i, vid))
-        print("{}.pid.{}={}".format(name, i, pid_list[i]))
+        print(f"{name}.vid.{i}={vid}")
+        print(f"{name}.pid.{i}={pid_list[i]}")
     print()
+
 
 def build_upload(mcu, name, extra_flags):
     print("# Upload")    
-    print("{}.upload.tool=bossac18".format(name))
-    print("{}.upload.protocol=sam-ba".format(name))
+    print(f"{name}.upload.tool=bossac18")
+    print(f"{name}.upload.protocol=sam-ba")
     
     if ('SAMD51P20A' in extra_flags) or ('SAMD51J20A' in extra_flags):
         flash_size = 1032192
     else:
         flash_size = mcu_dict[mcu]['flash_size']
-    print("{}.upload.maximum_size={}".format(name, flash_size))
-    #print("{}.upload.maximum_data_size=%d".format((name, mcu_dict[mcu]['data_size']))
+    print(f"{name}.upload.maximum_size={flash_size}")
+    #print(f"{name}.upload.maximum_data_size={mcu_dict[mcu]['data_size']}")
     
-    print("{}.upload.offset={}".format(name, mcu_dict[mcu]['offset']))    
-    print("{}.upload.use_1200bps_touch=true".format(name))
-    print("{}.upload.wait_for_upload_port=true".format(name))
-    print("{}.upload.native_usb=true".format(name))
+    print(f"{name}.upload.offset={mcu_dict[mcu]['offset']}")
+    print(f"{name}.upload.use_1200bps_touch=true")
+    print(f"{name}.upload.wait_for_upload_port=true")
+    print(f"{name}.upload.native_usb=true")
     print()
+
 
 def build_build(mcu, name, variant, vendor, product, vid, pid_list, boarddefine, extra_flags, bootloader):
     print("# Build")
-    print("{}.build.mcu={}".format(name, mcu_dict[mcu]['build_mcu']))
-    print("{}.build.f_cpu={}".format(name, mcu_dict[mcu]['f_cpu']))
-    print('{}.build.usb_product="{}"'.format(name, product))
-    print('{}.build.usb_manufacturer="{}"'.format(name, vendor))
-    print("{}.build.board={}".format(name, boarddefine))
-    print("{}.build.core=arduino".format(name))
+    print(f"{name}.build.mcu={mcu_dict[mcu]['build_mcu']}")
+    print(f"{name}.build.f_cpu={mcu_dict[mcu]['f_cpu']}")
+    print(f'{name}.build.usb_product="{product}"')
+    print(f'{name}.build.usb_manufacturer="{vendor}"')
+    print(f"{name}.build.board={boarddefine}")
+    print(f"{name}.build.core=arduino")
 
     # Due to fastLed issue https://github.com/FastLED/FastLED/issues/1363
     # although there is a simple fix already https://github.com/FastLED/FastLED/pull/1424
     # fastLED is not well maintained, and we need to skip ARDUINO_SAMD_ZERO for affected boards
     # in the long run we should move all of our libraries away from ARDUINO_SAMD_ZERO
     if variant in [ 'gemma_m0', 'trinket_m0', 'qtpy_m0', 'itsybitsy_m0' ]:
-        print("{}.build.extra_flags={} -DARM_MATH_CM0PLUS {{build.usb_flags}}".format(name, extra_flags))
+        print(f"{name}.build.extra_flags={extra_flags} -DARM_MATH_CM0PLUS {{build.usb_flags}}")
     else:
-        print("{}.build.extra_flags={} {} {{build.usb_flags}}".format(name, extra_flags, mcu_dict[mcu]['extra_flags']))
+        print(f"{name}.build.extra_flags={extra_flags} {mcu_dict[mcu]['extra_flags']} {{build.usb_flags}}")
 
-    print("{}.build.ldscript=linker_scripts/gcc/flash_with_bootloader.ld".format(name))    
-    print("{}.build.openocdscript=openocd_scripts/{}.cfg".format(name, variant))    
-    print("{}.build.variant={}".format(name, variant))
-    print("{}.build.variant_system_lib=".format(name))    
-    print("{}.build.vid={}".format(name, vid))
-    print("{}.build.pid={}".format(name, pid_list[0]))            
-    print("{}.bootloader.tool=openocd".format(name))
-    print("{}.bootloader.file={}".format(name, bootloader))
+    print(f"{name}.build.ldscript=linker_scripts/gcc/flash_with_bootloader.ld")
+    print(f"{name}.build.openocdscript=openocd_scripts/{variant}.cfg")
+    print(f"{name}.build.variant={variant}")
+    print(f"{name}.build.variant_system_lib=")
+    print(f"{name}.build.vid={vid}")
+    print(f"{name}.build.pid={pid_list[0]}")
+    print(f"{name}.bootloader.tool=openocd")
+    print(f"{name}.bootloader.file={bootloader}")
     if (mcu == 'SAMD51' or mcu == 'SAME51'):
-        print('{}.compiler.arm.cmsis.ldflags="-L{{runtime.tools.CMSIS-5.4.0.path}}/CMSIS/Lib/GCC/" "-L{{build.variant.path}}" -larm_cortexM4lf_math -mfloat-abi=hard -mfpu=fpv4-sp-d16'.format(name))
+        print(f'{name}.compiler.arm.cmsis.ldflags="-L{{runtime.tools.CMSIS-5.4.0.path}}/CMSIS/Lib/GCC/" "-L{{build.variant.path}}" -larm_cortexM4lf_math -mfloat-abi=hard -mfpu=fpv4-sp-d16')
     print()
     
 
 def build_menu(mcu, name):
     print("# Menu")
     if (mcu == 'SAMD51' or mcu == 'SAME51'):
-        print("{}.menu.cache.on=Enabled".format(name))
-        print("{}.menu.cache.on.build.cache_flags=-DENABLE_CACHE".format(name))
-        print("{}.menu.cache.off=Disabled".format(name))
-        print("{}.menu.cache.off.build.cache_flags=".format(name))
+        print(f"{name}.menu.cache.on=Enabled")
+        print(f"{name}.menu.cache.on.build.cache_flags=-DENABLE_CACHE")
+        print(f"{name}.menu.cache.off=Disabled")
+        print(f"{name}.menu.cache.off.build.cache_flags=")
         
-        print("{}.menu.speed.120=120 MHz (standard)".format(name))
-        print("{}.menu.speed.120.build.f_cpu=120000000L".format(name))
-        print("{}.menu.speed.150=150 MHz (overclock)".format(name))
-        print("{}.menu.speed.150.build.f_cpu=150000000L".format(name))
-        print("{}.menu.speed.180=180 MHz (overclock)".format(name))
-        print("{}.menu.speed.180.build.f_cpu=180000000L".format(name))
-        print("{}.menu.speed.200=200 MHz (overclock)".format(name))
-        print("{}.menu.speed.200.build.f_cpu=200000000L".format(name))
+        print(f"{name}.menu.speed.120=120 MHz (standard)")
+        print(f"{name}.menu.speed.120.build.f_cpu=120000000L")
+        print(f"{name}.menu.speed.150=150 MHz (overclock)")
+        print(f"{name}.menu.speed.150.build.f_cpu=150000000L")
+        print(f"{name}.menu.speed.180=180 MHz (overclock)")
+        print(f"{name}.menu.speed.180.build.f_cpu=180000000L")
+        print(f"{name}.menu.speed.200=200 MHz (overclock)")
+        print(f"{name}.menu.speed.200.build.f_cpu=200000000L")
     
-    print("{}.menu.opt.small=Small (-Os) (standard)".format(name))
-    print("{}.menu.opt.small.build.flags.optimize=-Os".format(name))
-    print("{}.menu.opt.fast=Fast (-O2)".format(name))
-    print("{}.menu.opt.fast.build.flags.optimize=-O2".format(name))
-    print("{}.menu.opt.faster=Faster (-O3)".format(name))
-    print("{}.menu.opt.faster.build.flags.optimize=-O3".format(name))
-    print("{}.menu.opt.fastest=Fastest (-Ofast)".format(name))
-    print("{}.menu.opt.fastest.build.flags.optimize=-Ofast".format(name))
-    print("{}.menu.opt.dragons=Here be dragons (-Ofast -funroll-loops)".format(name))
-    print("{}.menu.opt.dragons.build.flags.optimize=-Ofast -funroll-loops".format(name))
+    print(f"{name}.menu.opt.small=Small (-Os) (standard)")
+    print(f"{name}.menu.opt.small.build.flags.optimize=-Os")
+    print(f"{name}.menu.opt.fast=Fast (-O2)")
+    print(f"{name}.menu.opt.fast.build.flags.optimize=-O2")
+    print(f"{name}.menu.opt.faster=Faster (-O3)")
+    print(f"{name}.menu.opt.faster.build.flags.optimize=-O3")
+    print(f"{name}.menu.opt.fastest=Fastest (-Ofast)")
+    print(f"{name}.menu.opt.fastest.build.flags.optimize=-Ofast")
+    print(f"{name}.menu.opt.dragons=Here be dragons (-Ofast -funroll-loops)")
+    print(f"{name}.menu.opt.dragons.build.flags.optimize=-Ofast -funroll-loops")
     
     if (mcu == 'SAMD51' or mcu == 'SAME51'):
-        print("{}.menu.maxqspi.50=50 MHz (standard)".format(name))
-        print("{}.menu.maxqspi.50.build.flags.maxqspi=-DVARIANT_QSPI_BAUD_DEFAULT=50000000".format(name))
-        print("{}.menu.maxqspi.fcpu=CPU Speed / 2".format(name))
-        print("{}.menu.maxqspi.fcpu.build.flags.maxqspi=-DVARIANT_QSPI_BAUD_DEFAULT=({{build.f_cpu}})".format(name))
+        print(f"{name}.menu.maxqspi.50=50 MHz (standard)")
+        print(f"{name}.menu.maxqspi.50.build.flags.maxqspi=-DVARIANT_QSPI_BAUD_DEFAULT=50000000")
+        print(f"{name}.menu.maxqspi.fcpu=CPU Speed / 2")
+        print(f"{name}.menu.maxqspi.fcpu.build.flags.maxqspi=-DVARIANT_QSPI_BAUD_DEFAULT=({{build.f_cpu}})")
 
-    print("{}.menu.usbstack.arduino=Arduino".format(name))
-    print("{}.menu.usbstack.tinyusb=TinyUSB".format(name))
-    print("{}.menu.usbstack.tinyusb.build.flags.usbstack=-DUSE_TINYUSB".format(name))
+    print(f"{name}.menu.usbstack.arduino=Arduino")
+    print(f"{name}.menu.usbstack.tinyusb=TinyUSB")
+    print(f"{name}.menu.usbstack.tinyusb.build.flags.usbstack=-DUSE_TINYUSB")
 
-    print("{}.menu.debug.off=Off".format(name))
-    print("{}.menu.debug.on=On".format(name))
-    print("{}.menu.debug.on.build.flags.debug=-g".format(name))
+    print(f"{name}.menu.debug.off=Off")
+    print(f"{name}.menu.debug.on=On")
+    print(f"{name}.menu.debug.on.build.flags.debug=-g")
     print()
+
 
 def build_global_menu():
     print("menu.cache=Cache")
@@ -162,11 +165,14 @@ def build_global_menu():
     print("menu.usbstack=USB Stack")
     print("menu.debug=Debug")
 
+
 def make_board(mcu, name, variant, vendor, product, vid, pid_list, boarddefine, extra_flags, bootloader):
     build_header(mcu, name, vendor, product, vid, pid_list)
     build_upload(mcu, name, extra_flags)
     build_build(mcu, name, variant, vendor, product, vid, pid_list, boarddefine, extra_flags, bootloader)    
     build_menu(mcu, name)
+
+
 
 build_global_menu()
 
