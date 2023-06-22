@@ -62,4 +62,4 @@ jobs:
         arduino-cli lib install "Adafruit NeoPixel" "Adafruit seesaw Library" "Adafruit SPIFlash" "FlashStorage" "MIDI Library" "SD" "SdFat - Adafruit Fork"
 
     - name: Build examples
-      run: python3 extras/build_all.py ${{ matrix.board }}
+      run: python3 tools/build_all.py ${{ matrix.board }}

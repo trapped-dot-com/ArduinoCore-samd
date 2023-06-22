@@ -25,7 +25,7 @@ mcu_dict = {
         'build_mcu': 'cortex-m0plus',
         'f_cpu': '48000000L',
         'extra_flags': '-DARDUINO_SAMD_ZERO -DARM_MATH_CM0PLUS',
-        'openocdscript': 'debug/openocd/samd21.cfg',
+        'openocdscript': 'scripts/openocd/samd2x.cfg',
     },
     
     'SAMD51': {
@@ -35,7 +35,7 @@ mcu_dict = {
         'build_mcu': 'cortex-m4',
         'f_cpu': '120000000L',
         'extra_flags': '-D__SAMD51__ -D__FPU_PRESENT -DARM_MATH_CM4 -mfloat-abi=hard -mfpu=fpv4-sp-d16',
-        'openocdscript': 'debug/openocd/samd51.cfg',
+        'openocdscript': 'scripts/openocd/samd5x.cfg',
     },
     
     'SAME51': {
@@ -45,7 +45,7 @@ mcu_dict = {
         'build_mcu': 'cortex-m4',
         'f_cpu': '120000000L',
         'extra_flags': '-D__SAMD51__ -D__FPU_PRESENT -DARM_MATH_CM4 -mfloat-abi=hard -mfpu=fpv4-sp-d16',
-        'openocdscript': 'debug/openocd/same51.cfg',
+        'openocdscript': 'scripts/openocd/same5x.cfg',
     },                    
 }
 
