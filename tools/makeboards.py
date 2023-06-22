@@ -24,7 +24,8 @@ mcu_dict = {
         'offset': '0x2000',
         'build_mcu': 'cortex-m0plus',
         'f_cpu': '48000000L',
-        'extra_flags': '-DARDUINO_SAMD_ZERO -DARM_MATH_CM0PLUS'
+        'extra_flags': '-DARDUINO_SAMD_ZERO -DARM_MATH_CM0PLUS',
+        'openocdscript': 'debug/openocd/samd21.cfg',
     },
     
     'SAMD51': {
@@ -33,7 +34,8 @@ mcu_dict = {
         'offset': '0x4000',
         'build_mcu': 'cortex-m4',
         'f_cpu': '120000000L',
-        'extra_flags': '-D__SAMD51__ -D__FPU_PRESENT -DARM_MATH_CM4 -mfloat-abi=hard -mfpu=fpv4-sp-d16'
+        'extra_flags': '-D__SAMD51__ -D__FPU_PRESENT -DARM_MATH_CM4 -mfloat-abi=hard -mfpu=fpv4-sp-d16',
+        'openocdscript': 'debug/openocd/samd51.cfg',
     },
     
     'SAME51': {
@@ -42,7 +44,8 @@ mcu_dict = {
         'offset': '0x4000',
         'build_mcu': 'cortex-m4',
         'f_cpu': '120000000L',
-        'extra_flags': '-D__SAMD51__ -D__FPU_PRESENT -DARM_MATH_CM4 -mfloat-abi=hard -mfpu=fpv4-sp-d16'
+        'extra_flags': '-D__SAMD51__ -D__FPU_PRESENT -DARM_MATH_CM4 -mfloat-abi=hard -mfpu=fpv4-sp-d16',
+        'openocdscript': 'debug/openocd/same51.cfg',
     },                    
 }
 
@@ -83,9 +86,11 @@ def build_upload(mcu, name, extra_flags):
 
 
 def build_build(mcu, name, variant, vendor, product, vid, pid_list, boarddefine, extra_flags, bootloader):
+    mcu_properties = mcu_dict[mcu]
+
     print("# Build")
-    print(f"{name}.build.mcu={mcu_dict[mcu]['build_mcu']}")
-    print(f"{name}.build.f_cpu={mcu_dict[mcu]['f_cpu']}")
+    print(f"{name}.build.mcu={mcu_properties['build_mcu']}")
+    print(f"{name}.build.f_cpu={mcu_properties['f_cpu']}")
     print(f'{name}.build.usb_product="{product}"')
     print(f'{name}.build.usb_manufacturer="{vendor}"')
     print(f"{name}.build.board={boarddefine}")
@@ -98,10 +103,10 @@ def build_build(mcu, name, variant, vendor, product, vid, pid_list, boarddefine,
     if variant in [ 'gemma_m0', 'trinket_m0', 'qtpy_m0', 'itsybitsy_m0' ]:
         print(f"{name}.build.extra_flags={extra_flags} -DARM_MATH_CM0PLUS {{build.usb_flags}}")
     else:
-        print(f"{name}.build.extra_flags={extra_flags} {mcu_dict[mcu]['extra_flags']} {{build.usb_flags}}")
+        print(f"{name}.build.extra_flags={extra_flags} {mcu_properties['extra_flags']} {{build.usb_flags}}")
 
     print(f"{name}.build.ldscript=linker_scripts/gcc/flash_with_bootloader.ld")
-    print(f"{name}.build.openocdscript=openocd_scripts/{variant}.cfg")
+    print(f"{name}.build.openocdscript={mcu_properties['openocdscript']}")
     print(f"{name}.build.variant={variant}")
     print(f"{name}.build.variant_system_lib=")
     print(f"{name}.build.vid={vid}")
@@ -114,13 +119,15 @@ def build_build(mcu, name, variant, vendor, product, vid, pid_list, boarddefine,
     
 
 def build_menu(mcu, name):
-    print("# Menu")
     if (mcu == 'SAMD51' or mcu == 'SAME51'):
+        print("# Menu: Cache")
         print(f"{name}.menu.cache.on=Enabled")
         print(f"{name}.menu.cache.on.build.cache_flags=-DENABLE_CACHE")
         print(f"{name}.menu.cache.off=Disabled")
         print(f"{name}.menu.cache.off.build.cache_flags=")
-        
+        print()
+
+        print("# Menu: Speed")
         print(f"{name}.menu.speed.120=120 MHz (standard)")
         print(f"{name}.menu.speed.120.build.f_cpu=120000000L")
         print(f"{name}.menu.speed.150=150 MHz (overclock)")
@@ -129,7 +136,9 @@ def build_menu(mcu, name):
         print(f"{name}.menu.speed.180.build.f_cpu=180000000L")
         print(f"{name}.menu.speed.200=200 MHz (overclock)")
         print(f"{name}.menu.speed.200.build.f_cpu=200000000L")
-    
+        print()
+
+    print("# Menu: Optimization")
     print(f"{name}.menu.opt.small=Small (-Os) (standard)")
     print(f"{name}.menu.opt.small.build.flags.optimize=-Os")
     print(f"{name}.menu.opt.fast=Fast (-O2)")
@@ -140,17 +149,23 @@ def build_menu(mcu, name):
     print(f"{name}.menu.opt.fastest.build.flags.optimize=-Ofast")
     print(f"{name}.menu.opt.dragons=Here be dragons (-Ofast -funroll-loops)")
     print(f"{name}.menu.opt.dragons.build.flags.optimize=-Ofast -funroll-loops")
+    print()
     
     if (mcu == 'SAMD51' or mcu == 'SAME51'):
+        print("# Menu: QSPI Speed")
         print(f"{name}.menu.maxqspi.50=50 MHz (standard)")
         print(f"{name}.menu.maxqspi.50.build.flags.maxqspi=-DVARIANT_QSPI_BAUD_DEFAULT=50000000")
         print(f"{name}.menu.maxqspi.fcpu=CPU Speed / 2")
         print(f"{name}.menu.maxqspi.fcpu.build.flags.maxqspi=-DVARIANT_QSPI_BAUD_DEFAULT=({{build.f_cpu}})")
+        print()
 
+    print("# Menu: USB Stack")
     print(f"{name}.menu.usbstack.arduino=Arduino")
     print(f"{name}.menu.usbstack.tinyusb=TinyUSB")
     print(f"{name}.menu.usbstack.tinyusb.build.flags.usbstack=-DUSE_TINYUSB")
+    print()
 
+    print("# Menu: Debug")
     print(f"{name}.menu.debug.off=Off")
     print(f"{name}.menu.debug.on=On")
     print(f"{name}.menu.debug.on.build.flags.debug=-g")
@@ -184,6 +199,7 @@ build_global_menu()
 # ------------------------------
 
 # name, variant, vendor, product, vid, pid_list, boarddefine, extra_flags, bootloader
+# try to sort in Alphabetical order
 d21_board_list = [
     ["adafruit_feather_m0", "feather_m0", "Adafruit", "Feather M0",
      "0x239A", ["0x800B", "0x000B", "0x0015"],
@@ -267,7 +283,7 @@ d21_board_list = [
 
     ["adafruit_blm_badge", "blm_badge", "Adafruit", "BLM Badge",
      "0x239A", ["0x80BF", "0x00BF", "0x80C0"],
-     "BLM_BADGE_M0", "-D__SAMD21E18A__ -DCRYSTALLESS  -DADAFRUIT_BLM_BADGE",
+     "BLM_BADGE_M0", "-D__SAMD21E18A__ -DCRYSTALLESS -DADAFRUIT_BLM_BADGE",
      "blmbadge/bootloader-blm_badge.bin"],
 ]
 
@@ -310,48 +326,48 @@ d51_board_list = [
      "TRELLIS_M4", "-D__SAMD51G19A__ -DCRYSTALLESS -DADAFRUIT_TRELLIS_M4_EXPRESS",
      "trellisM4/bootloader-trellis_m4-v2.0.0-adafruit.5.bin"],
 
-    ["adafruit_pyportal_m4", "pyportal_m4",
-     "Adafruit", "PyPortal M4", "0x239A", ["0x8035", "0x0035", "0x8036"],
+    ["adafruit_pyportal_m4", "pyportal_m4", "Adafruit", "PyPortal M4",
+     "0x239A", ["0x8035", "0x0035", "0x8036"],
      "PYPORTAL_M4", "-D__SAMD51J20A__ -DCRYSTALLESS -DADAFRUIT_PYPORTAL",
      "metroM4/bootloader-metro_m4-v2.0.0-adafruit.5.bin"],
 
-    ["adafruit_pyportal_m4_titano", "pyportal_m4_titano",
-     "Adafruit", "PyPortal M4 Titano", "0x239A", ["0x8053", "0x8053"],
+    ["adafruit_pyportal_m4_titano", "pyportal_m4_titano", "Adafruit", "PyPortal M4 Titano",
+     "0x239A", ["0x8053", "0x8053"],
      "PYPORTAL_M4_TITANO", "-D__SAMD51J20A__ -DCRYSTALLESS -DADAFRUIT_PYPORTAL_M4_TITANO",
      "metroM4/bootloader-metro_m4-v2.0.0-adafruit.5.bin"],
 
-    ["adafruit_pybadge_m4", "pybadge_m4",
-     "Adafruit", "pyBadge M4 Express", "0x239A", ["0x8033", "0x0033", "0x8034", "0x0034"],
+    ["adafruit_pybadge_m4", "pybadge_m4", "Adafruit", "pyBadge M4 Express",
+     "0x239A", ["0x8033", "0x0033", "0x8034", "0x0034"],
      "PYBADGE_M4", "-D__SAMD51J19A__ -DCRYSTALLESS -DADAFRUIT_PYBADGE_M4_EXPRESS",
      "featherM4/bootloader-feather_m4-v2.0.0-adafruit.5.bin"],
 
-    ["adafruit_metro_m4_airliftlite", "metro_m4_airlift",
-     "Adafruit", "Metro M4 AirLift Lite", "0x239A", ["0x8037", "0x0037"],
+    ["adafruit_metro_m4_airliftlite", "metro_m4_airlift", "Adafruit", "Metro M4 AirLift Lite",
+     "0x239A", ["0x8037", "0x0037"],
      "METRO_M4_AIRLIFT_LITE", "-D__SAMD51J19A__ -DADAFRUIT_METRO_M4_AIRLIFT_LITE",
      "metroM4/bootloader-metro_m4-v2.0.0-adafruit.5.bin"],
 
-    ["adafruit_pygamer_m4", "pygamer_m4",
-     "Adafruit", "PyGamer M4 Express", "0x239A", ["0x803D", "0x003D", "0x803E"],
-     "PYGAMER_M4", "-D__SAMD51J19A__ -DCRYSTALLESS  -DADAFRUIT_PYGAMER_M4_EXPRESS",
+    ["adafruit_pygamer_m4", "pygamer_m4", "Adafruit", "PyGamer M4 Express",
+     "0x239A", ["0x803D", "0x003D", "0x803E"],
+     "PYGAMER_M4", "-D__SAMD51J19A__ -DCRYSTALLESS -DADAFRUIT_PYGAMER_M4_EXPRESS",
      "featherM4/bootloader-feather_m4-v2.0.0-adafruit.5.bin"],
 
-    ["adafruit_pybadge_airlift_m4", "pybadge_airlift_m4",
-     "Adafruit", "pyBadge AirLift M4", "0x239A", ["0x8043", "0x0043", "0x8044"],
-     "PYBADGE_AIRLIFT_M4", "-D__SAMD51J20A__ -DCRYSTALLESS  -DADAFRUIT_PYBADGE_AIRLIFT_M4",
+    ["adafruit_pybadge_airlift_m4", "pybadge_airlift_m4", "Adafruit", "pyBadge AirLift M4",
+     "0x239A", ["0x8043", "0x0043", "0x8044"],
+     "PYBADGE_AIRLIFT_M4", "-D__SAMD51J20A__ -DCRYSTALLESS -DADAFRUIT_PYBADGE_AIRLIFT_M4",
      "featherM4/bootloader-feather_m4-v2.0.0-adafruit.5.bin"],
 
-    ["adafruit_monster_m4sk", "monster_m4sk",
-     "Adafruit", "MONSTER M4SK", "0x239A", ["0x8047", "0x0047", "0x8048"],
-     "MONSTER_M4SK", "-D__SAMD51G19A__ -DCRYSTALLESS  -DADAFRUIT_MONSTER_M4SK_EXPRESS",
+    ["adafruit_monster_m4sk", "monster_m4sk", "Adafruit", "MONSTER M4SK",
+     "0x239A", ["0x8047", "0x0047", "0x8048"],
+     "MONSTER_M4SK", "-D__SAMD51G19A__ -DCRYSTALLESS -DADAFRUIT_MONSTER_M4SK_EXPRESS",
      "featherM4/bootloader-feather_m4-v2.0.0-adafruit.5.bin"],
 
-    ["adafruit_hallowing_m4", "hallowing_m4",
-     "Adafruit", "Hallowing M4", "0x239A", ["0x8049", "0x0049", "0x804A"],
-     "HALLOWING_M4", "-D__SAMD51J19A__ -DCRYSTALLESS  -DADAFRUIT_HALLOWING_M4_EXPRESS",
+    ["adafruit_hallowing_m4", "hallowing_m4", "Adafruit", "Hallowing M4",
+     "0x239A", ["0x8049", "0x0049", "0x804A"],
+     "HALLOWING_M4", "-D__SAMD51J19A__ -DCRYSTALLESS -DADAFRUIT_HALLOWING_M4_EXPRESS",
      "featherM4/bootloader-feather_m4-v2.0.0-adafruit.5.bin"],
 
-    ["adafruit_matrixportal_m4", "matrixportal_m4",
-     "Adafruit", "Matrix Portal M4", "0x239A", ["0x80C9", "0x00C9", "0x80CA"],
+    ["adafruit_matrixportal_m4", "matrixportal_m4", "Adafruit", "Matrix Portal M4",
+     "0x239A", ["0x80C9", "0x00C9", "0x80CA"],
      "MATRIXPORTAL_M4", "-D__SAMD51J19A__ -DCRYSTALLESS  -DADAFRUIT_MATRIXPORTAL_M4_EXPRESS",
      "matrixportalM4/bootloader-matrixportal_m4.bin"],
 ]

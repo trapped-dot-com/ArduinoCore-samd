@@ -222,3 +222,23 @@ tools.openocd-withbootsize.erase.pattern=
 tools.openocd-withbootsize.bootloader.params.verbose=-d2
 tools.openocd-withbootsize.bootloader.params.quiet=-d0
 tools.openocd-withbootsize.bootloader.pattern="{path}/{cmd}" {bootloader.verbose} -s "{path}/share/openocd/scripts/" -f "{runtime.platform.path}/variants/{build.variant}/{build.openocdscript}" -c "telnet_port disabled; init; halt; at91samd bootloader 0; program {{runtime.platform.path}/bootloaders/{bootloader.file}} verify reset; shutdown"
+
+# ----------------------------------------
+# Debugger configuration (general options)
+# ----------------------------------------
+# EXPERIMENTAL feature:
+#  - this is alpha and may be subject to change without notice
+debug.executable={build.path}/{build.project_name}.elf
+debug.toolchain=gcc
+debug.toolchain.path={runtime.tools.arm-none-eabi-gcc.path}/bin/
+debug.toolchain.prefix=arm-none-eabi-
+debug.server=openocd
+debug.server.openocd.path={runtime.tools.openocd.path}/bin/openocd
+debug.server.openocd.scripts_dir={runtime.tools.openocd.path}/share/openocd/scripts/
+debug.server.openocd.script={runtime.platform.path}/{build.openocdscript}
+
+# jlink is not supported by arduino-cli yet, but supported by IDE
+#debug.server=jlink
+#debug.server.jlink.path={runtime.tools.openocd.path}/bin/openocd
+#debug.server.jlink.scripts_dir={runtime.tools.openocd.path}/share/openocd/scripts/
+#debug.server.jlink.script={runtime.platform.path}/{build.openocdscript}
