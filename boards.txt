@@ -20,7 +20,6 @@ menu.opt=Optimize
 menu.maxqspi=Max QSPI
 menu.usbstack=USB Stack
 menu.debug=Debug
-menu.debugger=Debugger
 
 # -----------------------------------
 # Adafruit Feather M0 (SAMD21)
@@ -53,6 +52,7 @@ adafruit_feather_m0.build.board=SAMD_ZERO
 adafruit_feather_m0.build.core=arduino
 adafruit_feather_m0.build.extra_flags=-D__SAMD21G18A__ -DADAFRUIT_FEATHER_M0 -DARDUINO_SAMD_ZERO -DARM_MATH_CM0PLUS {build.usb_flags}
 adafruit_feather_m0.build.ldscript=linker_scripts/gcc/flash_with_bootloader.ld
+adafruit_feather_m0.build.openocdscript=scripts/openocd/daplink_samd21.cfg
 adafruit_feather_m0.build.variant=feather_m0
 adafruit_feather_m0.build.variant_system_lib=
 adafruit_feather_m0.build.vid=0x239A
@@ -82,11 +82,6 @@ adafruit_feather_m0.menu.debug.off=Off
 adafruit_feather_m0.menu.debug.on=On
 adafruit_feather_m0.menu.debug.on.build.flags.debug=-g
 
-# Menu: Debugger
-adafruit_feather_m0.menu.debugger.daplink=CMSIS-DAP (DAPLink)
-adafruit_feather_m0.menu.debugger.daplink.build.openocdscript=scripts/openocd/daplink_samd21.cfg
-adafruit_feather_m0.menu.debugger.jlink=J-Link
-adafruit_feather_m0.menu.debugger.jlink.build.openocdscript=scripts/openocd/jlink_samd21.cfg
 
 # -----------------------------------
 # Adafruit Feather M0 Express (SAMD21)
@@ -117,6 +112,7 @@ adafruit_feather_m0_express.build.board=SAMD_FEATHER_M0_EXPRESS
 adafruit_feather_m0_express.build.core=arduino
 adafruit_feather_m0_express.build.extra_flags=-D__SAMD21G18A__ -DARDUINO_SAMD_FEATHER_M0 -DADAFRUIT_FEATHER_M0_EXPRESS -DARDUINO_SAMD_ZERO -DARM_MATH_CM0PLUS {build.usb_flags}
 adafruit_feather_m0_express.build.ldscript=linker_scripts/gcc/flash_with_bootloader.ld
+adafruit_feather_m0_express.build.openocdscript=scripts/openocd/daplink_samd21.cfg
 adafruit_feather_m0_express.build.variant=feather_m0_express
 adafruit_feather_m0_express.build.variant_system_lib=
 adafruit_feather_m0_express.build.vid=0x239A
@@ -146,11 +142,6 @@ adafruit_feather_m0_express.menu.debug.off=Off
 adafruit_feather_m0_express.menu.debug.on=On
 adafruit_feather_m0_express.menu.debug.on.build.flags.debug=-g
 
-# Menu: Debugger
-adafruit_feather_m0_express.menu.debugger.daplink=CMSIS-DAP (DAPLink)
-adafruit_feather_m0_express.menu.debugger.daplink.build.openocdscript=scripts/openocd/daplink_samd21.cfg
-adafruit_feather_m0_express.menu.debugger.jlink=J-Link
-adafruit_feather_m0_express.menu.debugger.jlink.build.openocdscript=scripts/openocd/jlink_samd21.cfg
 
 # -----------------------------------
 # Adafruit Metro M0 Express (SAMD21)
@@ -181,6 +172,7 @@ adafruit_metro_m0.build.board=SAMD_ZERO
 adafruit_metro_m0.build.core=arduino
 adafruit_metro_m0.build.extra_flags=-D__SAMD21G18A__ -DADAFRUIT_METRO_M0_EXPRESS -DARDUINO_SAMD_ZERO -DARM_MATH_CM0PLUS {build.usb_flags}
 adafruit_metro_m0.build.ldscript=linker_scripts/gcc/flash_with_bootloader.ld
+adafruit_metro_m0.build.openocdscript=scripts/openocd/daplink_samd21.cfg
 adafruit_metro_m0.build.variant=metro_m0
 adafruit_metro_m0.build.variant_system_lib=
 adafruit_metro_m0.build.vid=0x239A
@@ -210,11 +202,6 @@ adafruit_metro_m0.menu.debug.off=Off
 adafruit_metro_m0.menu.debug.on=On
 adafruit_metro_m0.menu.debug.on.build.flags.debug=-g
 
-# Menu: Debugger
-adafruit_metro_m0.menu.debugger.daplink=CMSIS-DAP (DAPLink)
-adafruit_metro_m0.menu.debugger.daplink.build.openocdscript=scripts/openocd/daplink_samd21.cfg
-adafruit_metro_m0.menu.debugger.jlink=J-Link
-adafruit_metro_m0.menu.debugger.jlink.build.openocdscript=scripts/openocd/jlink_samd21.cfg
 
 # -----------------------------------
 # Adafruit Circuit Playground Express (SAMD21)
@@ -245,6 +232,7 @@ adafruit_circuitplayground_m0.build.board=SAMD_CIRCUITPLAYGROUND_EXPRESS
 adafruit_circuitplayground_m0.build.core=arduino
 adafruit_circuitplayground_m0.build.extra_flags=-D__SAMD21G18A__ -DCRYSTALLESS -DADAFRUIT_CIRCUITPLAYGROUND_M0 -DARDUINO_SAMD_ZERO -DARM_MATH_CM0PLUS {build.usb_flags}
 adafruit_circuitplayground_m0.build.ldscript=linker_scripts/gcc/flash_with_bootloader.ld
+adafruit_circuitplayground_m0.build.openocdscript=scripts/openocd/daplink_samd21.cfg
 adafruit_circuitplayground_m0.build.variant=circuitplay
 adafruit_circuitplayground_m0.build.variant_system_lib=
 adafruit_circuitplayground_m0.build.vid=0x239A
@@ -274,11 +262,6 @@ adafruit_circuitplayground_m0.menu.debug.off=Off
 adafruit_circuitplayground_m0.menu.debug.on=On
 adafruit_circuitplayground_m0.menu.debug.on.build.flags.debug=-g
 
-# Menu: Debugger
-adafruit_circuitplayground_m0.menu.debugger.daplink=CMSIS-DAP (DAPLink)
-adafruit_circuitplayground_m0.menu.debugger.daplink.build.openocdscript=scripts/openocd/daplink_samd21.cfg
-adafruit_circuitplayground_m0.menu.debugger.jlink=J-Link
-adafruit_circuitplayground_m0.menu.debugger.jlink.build.openocdscript=scripts/openocd/jlink_samd21.cfg
 
 # -----------------------------------
 # Adafruit Gemma M0 (SAMD21)
@@ -309,6 +292,7 @@ adafruit_gemma_m0.build.board=GEMMA_M0
 adafruit_gemma_m0.build.core=arduino
 adafruit_gemma_m0.build.extra_flags=-D__SAMD21E18A__ -DCRYSTALLESS -DADAFRUIT_GEMMA_M0 -DARM_MATH_CM0PLUS {build.usb_flags}
 adafruit_gemma_m0.build.ldscript=linker_scripts/gcc/flash_with_bootloader.ld
+adafruit_gemma_m0.build.openocdscript=scripts/openocd/daplink_samd21.cfg
 adafruit_gemma_m0.build.variant=gemma_m0
 adafruit_gemma_m0.build.variant_system_lib=
 adafruit_gemma_m0.build.vid=0x239A
@@ -338,11 +322,6 @@ adafruit_gemma_m0.menu.debug.off=Off
 adafruit_gemma_m0.menu.debug.on=On
 adafruit_gemma_m0.menu.debug.on.build.flags.debug=-g
 
-# Menu: Debugger
-adafruit_gemma_m0.menu.debugger.daplink=CMSIS-DAP (DAPLink)
-adafruit_gemma_m0.menu.debugger.daplink.build.openocdscript=scripts/openocd/daplink_samd21.cfg
-adafruit_gemma_m0.menu.debugger.jlink=J-Link
-adafruit_gemma_m0.menu.debugger.jlink.build.openocdscript=scripts/openocd/jlink_samd21.cfg
 
 # -----------------------------------
 # Adafruit Trinket M0 (SAMD21)
@@ -373,6 +352,7 @@ adafruit_trinket_m0.build.board=TRINKET_M0
 adafruit_trinket_m0.build.core=arduino
 adafruit_trinket_m0.build.extra_flags=-D__SAMD21E18A__ -DCRYSTALLESS -DADAFRUIT_TRINKET_M0 -DARM_MATH_CM0PLUS {build.usb_flags}
 adafruit_trinket_m0.build.ldscript=linker_scripts/gcc/flash_with_bootloader.ld
+adafruit_trinket_m0.build.openocdscript=scripts/openocd/daplink_samd21.cfg
 adafruit_trinket_m0.build.variant=trinket_m0
 adafruit_trinket_m0.build.variant_system_lib=
 adafruit_trinket_m0.build.vid=0x239A
@@ -402,11 +382,6 @@ adafruit_trinket_m0.menu.debug.off=Off
 adafruit_trinket_m0.menu.debug.on=On
 adafruit_trinket_m0.menu.debug.on.build.flags.debug=-g
 
-# Menu: Debugger
-adafruit_trinket_m0.menu.debugger.daplink=CMSIS-DAP (DAPLink)
-adafruit_trinket_m0.menu.debugger.daplink.build.openocdscript=scripts/openocd/daplink_samd21.cfg
-adafruit_trinket_m0.menu.debugger.jlink=J-Link
-adafruit_trinket_m0.menu.debugger.jlink.build.openocdscript=scripts/openocd/jlink_samd21.cfg
 
 # -----------------------------------
 # Adafruit QT Py M0 (SAMD21)
@@ -439,6 +414,7 @@ adafruit_qtpy_m0.build.board=QTPY_M0
 adafruit_qtpy_m0.build.core=arduino
 adafruit_qtpy_m0.build.extra_flags=-D__SAMD21E18A__ -DCRYSTALLESS -DADAFRUIT_QTPY_M0 -DARM_MATH_CM0PLUS {build.usb_flags}
 adafruit_qtpy_m0.build.ldscript=linker_scripts/gcc/flash_with_bootloader.ld
+adafruit_qtpy_m0.build.openocdscript=scripts/openocd/daplink_samd21.cfg
 adafruit_qtpy_m0.build.variant=qtpy_m0
 adafruit_qtpy_m0.build.variant_system_lib=
 adafruit_qtpy_m0.build.vid=0x239A
@@ -468,11 +444,6 @@ adafruit_qtpy_m0.menu.debug.off=Off
 adafruit_qtpy_m0.menu.debug.on=On
 adafruit_qtpy_m0.menu.debug.on.build.flags.debug=-g
 
-# Menu: Debugger
-adafruit_qtpy_m0.menu.debugger.daplink=CMSIS-DAP (DAPLink)
-adafruit_qtpy_m0.menu.debugger.daplink.build.openocdscript=scripts/openocd/daplink_samd21.cfg
-adafruit_qtpy_m0.menu.debugger.jlink=J-Link
-adafruit_qtpy_m0.menu.debugger.jlink.build.openocdscript=scripts/openocd/jlink_samd21.cfg
 
 # -----------------------------------
 # Adafruit NeoPixel Trinkey M0 (SAMD21)
@@ -505,6 +476,7 @@ adafruit_neotrinkey_m0.build.board=NEOTRINKEY_M0
 adafruit_neotrinkey_m0.build.core=arduino
 adafruit_neotrinkey_m0.build.extra_flags=-D__SAMD21E18A__ -DCRYSTALLESS -DADAFRUIT_NEOTRINKEY_M0 -DARDUINO_SAMD_ZERO -DARM_MATH_CM0PLUS {build.usb_flags}
 adafruit_neotrinkey_m0.build.ldscript=linker_scripts/gcc/flash_with_bootloader.ld
+adafruit_neotrinkey_m0.build.openocdscript=scripts/openocd/daplink_samd21.cfg
 adafruit_neotrinkey_m0.build.variant=neotrinkey_m0
 adafruit_neotrinkey_m0.build.variant_system_lib=
 adafruit_neotrinkey_m0.build.vid=0x239A
@@ -534,11 +506,6 @@ adafruit_neotrinkey_m0.menu.debug.off=Off
 adafruit_neotrinkey_m0.menu.debug.on=On
 adafruit_neotrinkey_m0.menu.debug.on.build.flags.debug=-g
 
-# Menu: Debugger
-adafruit_neotrinkey_m0.menu.debugger.daplink=CMSIS-DAP (DAPLink)
-adafruit_neotrinkey_m0.menu.debugger.daplink.build.openocdscript=scripts/openocd/daplink_samd21.cfg
-adafruit_neotrinkey_m0.menu.debugger.jlink=J-Link
-adafruit_neotrinkey_m0.menu.debugger.jlink.build.openocdscript=scripts/openocd/jlink_samd21.cfg
 
 # -----------------------------------
 # Adafruit Rotary Trinkey M0 (SAMD21)
@@ -571,6 +538,7 @@ adafruit_rotarytrinkey_m0.build.board=ROTARYTRINKEY_M0
 adafruit_rotarytrinkey_m0.build.core=arduino
 adafruit_rotarytrinkey_m0.build.extra_flags=-D__SAMD21E18A__ -DCRYSTALLESS -DADAFRUIT_ROTARYTRINKEY_M0 -DARDUINO_SAMD_ZERO -DARM_MATH_CM0PLUS {build.usb_flags}
 adafruit_rotarytrinkey_m0.build.ldscript=linker_scripts/gcc/flash_with_bootloader.ld
+adafruit_rotarytrinkey_m0.build.openocdscript=scripts/openocd/daplink_samd21.cfg
 adafruit_rotarytrinkey_m0.build.variant=rotarytrinkey_m0
 adafruit_rotarytrinkey_m0.build.variant_system_lib=
 adafruit_rotarytrinkey_m0.build.vid=0x239A
@@ -600,11 +568,6 @@ adafruit_rotarytrinkey_m0.menu.debug.off=Off
 adafruit_rotarytrinkey_m0.menu.debug.on=On
 adafruit_rotarytrinkey_m0.menu.debug.on.build.flags.debug=-g
 
-# Menu: Debugger
-adafruit_rotarytrinkey_m0.menu.debugger.daplink=CMSIS-DAP (DAPLink)
-adafruit_rotarytrinkey_m0.menu.debugger.daplink.build.openocdscript=scripts/openocd/daplink_samd21.cfg
-adafruit_rotarytrinkey_m0.menu.debugger.jlink=J-Link
-adafruit_rotarytrinkey_m0.menu.debugger.jlink.build.openocdscript=scripts/openocd/jlink_samd21.cfg
 
 # -----------------------------------
 # Adafruit NeoKey Trinkey M0 (SAMD21)
@@ -637,6 +600,7 @@ adafruit_neokeytrinkey_m0.build.board=NEOKEYTRINKEY_M0
 adafruit_neokeytrinkey_m0.build.core=arduino
 adafruit_neokeytrinkey_m0.build.extra_flags=-D__SAMD21E18A__ -DCRYSTALLESS -DADAFRUIT_NEOKEYTRINKEY_M0 -DARDUINO_SAMD_ZERO -DARM_MATH_CM0PLUS {build.usb_flags}
 adafruit_neokeytrinkey_m0.build.ldscript=linker_scripts/gcc/flash_with_bootloader.ld
+adafruit_neokeytrinkey_m0.build.openocdscript=scripts/openocd/daplink_samd21.cfg
 adafruit_neokeytrinkey_m0.build.variant=neokeytrinkey_m0
 adafruit_neokeytrinkey_m0.build.variant_system_lib=
 adafruit_neokeytrinkey_m0.build.vid=0x239A
@@ -666,11 +630,6 @@ adafruit_neokeytrinkey_m0.menu.debug.off=Off
 adafruit_neokeytrinkey_m0.menu.debug.on=On
 adafruit_neokeytrinkey_m0.menu.debug.on.build.flags.debug=-g
 
-# Menu: Debugger
-adafruit_neokeytrinkey_m0.menu.debugger.daplink=CMSIS-DAP (DAPLink)
-adafruit_neokeytrinkey_m0.menu.debugger.daplink.build.openocdscript=scripts/openocd/daplink_samd21.cfg
-adafruit_neokeytrinkey_m0.menu.debugger.jlink=J-Link
-adafruit_neokeytrinkey_m0.menu.debugger.jlink.build.openocdscript=scripts/openocd/jlink_samd21.cfg
 
 # -----------------------------------
 # Adafruit Slide Trinkey M0 (SAMD21)
@@ -703,6 +662,7 @@ adafruit_slidetrinkey_m0.build.board=SLIDETRINKEY_M0
 adafruit_slidetrinkey_m0.build.core=arduino
 adafruit_slidetrinkey_m0.build.extra_flags=-D__SAMD21E18A__ -DCRYSTALLESS -DADAFRUIT_SLIDETRINKEY_M0 -DARDUINO_SAMD_ZERO -DARM_MATH_CM0PLUS {build.usb_flags}
 adafruit_slidetrinkey_m0.build.ldscript=linker_scripts/gcc/flash_with_bootloader.ld
+adafruit_slidetrinkey_m0.build.openocdscript=scripts/openocd/daplink_samd21.cfg
 adafruit_slidetrinkey_m0.build.variant=slidetrinkey_m0
 adafruit_slidetrinkey_m0.build.variant_system_lib=
 adafruit_slidetrinkey_m0.build.vid=0x239A
@@ -732,11 +692,6 @@ adafruit_slidetrinkey_m0.menu.debug.off=Off
 adafruit_slidetrinkey_m0.menu.debug.on=On
 adafruit_slidetrinkey_m0.menu.debug.on.build.flags.debug=-g
 
-# Menu: Debugger
-adafruit_slidetrinkey_m0.menu.debugger.daplink=CMSIS-DAP (DAPLink)
-adafruit_slidetrinkey_m0.menu.debugger.daplink.build.openocdscript=scripts/openocd/daplink_samd21.cfg
-adafruit_slidetrinkey_m0.menu.debugger.jlink=J-Link
-adafruit_slidetrinkey_m0.menu.debugger.jlink.build.openocdscript=scripts/openocd/jlink_samd21.cfg
 
 # -----------------------------------
 # Adafruit ProxLight Trinkey M0 (SAMD21)
@@ -769,6 +724,7 @@ adafruit_proxlighttrinkey_m0.build.board=PROXLIGHTTRINKEY_M0
 adafruit_proxlighttrinkey_m0.build.core=arduino
 adafruit_proxlighttrinkey_m0.build.extra_flags=-D__SAMD21E18A__ -DCRYSTALLESS -DADAFRUIT_PROXLIGHTTRINKEY_M0 -DARDUINO_SAMD_ZERO -DARM_MATH_CM0PLUS {build.usb_flags}
 adafruit_proxlighttrinkey_m0.build.ldscript=linker_scripts/gcc/flash_with_bootloader.ld
+adafruit_proxlighttrinkey_m0.build.openocdscript=scripts/openocd/daplink_samd21.cfg
 adafruit_proxlighttrinkey_m0.build.variant=proxlighttrinkey_m0
 adafruit_proxlighttrinkey_m0.build.variant_system_lib=
 adafruit_proxlighttrinkey_m0.build.vid=0x239A
@@ -798,11 +754,6 @@ adafruit_proxlighttrinkey_m0.menu.debug.off=Off
 adafruit_proxlighttrinkey_m0.menu.debug.on=On
 adafruit_proxlighttrinkey_m0.menu.debug.on.build.flags.debug=-g
 
-# Menu: Debugger
-adafruit_proxlighttrinkey_m0.menu.debugger.daplink=CMSIS-DAP (DAPLink)
-adafruit_proxlighttrinkey_m0.menu.debugger.daplink.build.openocdscript=scripts/openocd/daplink_samd21.cfg
-adafruit_proxlighttrinkey_m0.menu.debugger.jlink=J-Link
-adafruit_proxlighttrinkey_m0.menu.debugger.jlink.build.openocdscript=scripts/openocd/jlink_samd21.cfg
 
 # -----------------------------------
 # Adafruit ItsyBitsy M0 Express (SAMD21)
@@ -835,6 +786,7 @@ adafruit_itsybitsy_m0.build.board=ITSYBITSY_M0
 adafruit_itsybitsy_m0.build.core=arduino
 adafruit_itsybitsy_m0.build.extra_flags=-D__SAMD21G18A__ -DCRYSTALLESS -DADAFRUIT_ITSYBITSY_M0 -DARM_MATH_CM0PLUS {build.usb_flags}
 adafruit_itsybitsy_m0.build.ldscript=linker_scripts/gcc/flash_with_bootloader.ld
+adafruit_itsybitsy_m0.build.openocdscript=scripts/openocd/daplink_samd21.cfg
 adafruit_itsybitsy_m0.build.variant=itsybitsy_m0
 adafruit_itsybitsy_m0.build.variant_system_lib=
 adafruit_itsybitsy_m0.build.vid=0x239A
@@ -864,11 +816,6 @@ adafruit_itsybitsy_m0.menu.debug.off=Off
 adafruit_itsybitsy_m0.menu.debug.on=On
 adafruit_itsybitsy_m0.menu.debug.on.build.flags.debug=-g
 
-# Menu: Debugger
-adafruit_itsybitsy_m0.menu.debugger.daplink=CMSIS-DAP (DAPLink)
-adafruit_itsybitsy_m0.menu.debugger.daplink.build.openocdscript=scripts/openocd/daplink_samd21.cfg
-adafruit_itsybitsy_m0.menu.debugger.jlink=J-Link
-adafruit_itsybitsy_m0.menu.debugger.jlink.build.openocdscript=scripts/openocd/jlink_samd21.cfg
 
 # -----------------------------------
 # Adafruit pIRKey (SAMD21)
@@ -901,6 +848,7 @@ adafruit_pirkey.build.board=PIRKEY
 adafruit_pirkey.build.core=arduino
 adafruit_pirkey.build.extra_flags=-D__SAMD21E18A__ -DCRYSTALLESS -DADAFRUIT_PIRKEY -DARDUINO_SAMD_ZERO -DARM_MATH_CM0PLUS {build.usb_flags}
 adafruit_pirkey.build.ldscript=linker_scripts/gcc/flash_with_bootloader.ld
+adafruit_pirkey.build.openocdscript=scripts/openocd/daplink_samd21.cfg
 adafruit_pirkey.build.variant=pirkey
 adafruit_pirkey.build.variant_system_lib=
 adafruit_pirkey.build.vid=0x239A
@@ -930,11 +878,6 @@ adafruit_pirkey.menu.debug.off=Off
 adafruit_pirkey.menu.debug.on=On
 adafruit_pirkey.menu.debug.on.build.flags.debug=-g
 
-# Menu: Debugger
-adafruit_pirkey.menu.debugger.daplink=CMSIS-DAP (DAPLink)
-adafruit_pirkey.menu.debugger.daplink.build.openocdscript=scripts/openocd/daplink_samd21.cfg
-adafruit_pirkey.menu.debugger.jlink=J-Link
-adafruit_pirkey.menu.debugger.jlink.build.openocdscript=scripts/openocd/jlink_samd21.cfg
 
 # -----------------------------------
 # Adafruit Hallowing M0 (SAMD21)
@@ -967,6 +910,7 @@ adafruit_hallowing.build.board=SAMD_HALLOWING
 adafruit_hallowing.build.core=arduino
 adafruit_hallowing.build.extra_flags=-D__SAMD21G18A__ -DCRYSTALLESS -DARDUINO_SAMD_HALLOWING_M0 -DADAFRUIT_HALLOWING -DARDUINO_SAMD_ZERO -DARM_MATH_CM0PLUS {build.usb_flags}
 adafruit_hallowing.build.ldscript=linker_scripts/gcc/flash_with_bootloader.ld
+adafruit_hallowing.build.openocdscript=scripts/openocd/daplink_samd21.cfg
 adafruit_hallowing.build.variant=hallowing_m0_express
 adafruit_hallowing.build.variant_system_lib=
 adafruit_hallowing.build.vid=0x239A
@@ -996,11 +940,6 @@ adafruit_hallowing.menu.debug.off=Off
 adafruit_hallowing.menu.debug.on=On
 adafruit_hallowing.menu.debug.on.build.flags.debug=-g
 
-# Menu: Debugger
-adafruit_hallowing.menu.debugger.daplink=CMSIS-DAP (DAPLink)
-adafruit_hallowing.menu.debugger.daplink.build.openocdscript=scripts/openocd/daplink_samd21.cfg
-adafruit_hallowing.menu.debugger.jlink=J-Link
-adafruit_hallowing.menu.debugger.jlink.build.openocdscript=scripts/openocd/jlink_samd21.cfg
 
 # -----------------------------------
 # Adafruit Crickit M0 (SAMD21)
@@ -1033,6 +972,7 @@ adafruit_crickit_m0.build.board=CRICKIT_M0
 adafruit_crickit_m0.build.core=arduino
 adafruit_crickit_m0.build.extra_flags=-D__SAMD21G18A__ -DCRYSTALLESS -DADAFRUIT_CRICKIT_M0 -DARDUINO_SAMD_ZERO -DARM_MATH_CM0PLUS {build.usb_flags}
 adafruit_crickit_m0.build.ldscript=linker_scripts/gcc/flash_with_bootloader.ld
+adafruit_crickit_m0.build.openocdscript=scripts/openocd/daplink_samd21.cfg
 adafruit_crickit_m0.build.variant=crickit_m0
 adafruit_crickit_m0.build.variant_system_lib=
 adafruit_crickit_m0.build.vid=0x239A
@@ -1062,11 +1002,6 @@ adafruit_crickit_m0.menu.debug.off=Off
 adafruit_crickit_m0.menu.debug.on=On
 adafruit_crickit_m0.menu.debug.on.build.flags.debug=-g
 
-# Menu: Debugger
-adafruit_crickit_m0.menu.debugger.daplink=CMSIS-DAP (DAPLink)
-adafruit_crickit_m0.menu.debugger.daplink.build.openocdscript=scripts/openocd/daplink_samd21.cfg
-adafruit_crickit_m0.menu.debugger.jlink=J-Link
-adafruit_crickit_m0.menu.debugger.jlink.build.openocdscript=scripts/openocd/jlink_samd21.cfg
 
 # -----------------------------------
 # Adafruit BLM Badge (SAMD21)
@@ -1099,6 +1034,7 @@ adafruit_blm_badge.build.board=BLM_BADGE_M0
 adafruit_blm_badge.build.core=arduino
 adafruit_blm_badge.build.extra_flags=-D__SAMD21E18A__ -DCRYSTALLESS -DADAFRUIT_BLM_BADGE -DARDUINO_SAMD_ZERO -DARM_MATH_CM0PLUS {build.usb_flags}
 adafruit_blm_badge.build.ldscript=linker_scripts/gcc/flash_with_bootloader.ld
+adafruit_blm_badge.build.openocdscript=scripts/openocd/daplink_samd21.cfg
 adafruit_blm_badge.build.variant=blm_badge
 adafruit_blm_badge.build.variant_system_lib=
 adafruit_blm_badge.build.vid=0x239A
@@ -1128,11 +1064,6 @@ adafruit_blm_badge.menu.debug.off=Off
 adafruit_blm_badge.menu.debug.on=On
 adafruit_blm_badge.menu.debug.on.build.flags.debug=-g
 
-# Menu: Debugger
-adafruit_blm_badge.menu.debugger.daplink=CMSIS-DAP (DAPLink)
-adafruit_blm_badge.menu.debugger.daplink.build.openocdscript=scripts/openocd/daplink_samd21.cfg
-adafruit_blm_badge.menu.debugger.jlink=J-Link
-adafruit_blm_badge.menu.debugger.jlink.build.openocdscript=scripts/openocd/jlink_samd21.cfg
 
 # -----------------------------------
 # Adafruit Metro M4 (SAMD51)
@@ -1167,6 +1098,7 @@ adafruit_metro_m4.build.board=METRO_M4
 adafruit_metro_m4.build.core=arduino
 adafruit_metro_m4.build.extra_flags=-D__SAMD51J19A__ -DADAFRUIT_METRO_M4_EXPRESS -D__SAMD51__ -D__FPU_PRESENT -DARM_MATH_CM4 -mfloat-abi=hard -mfpu=fpv4-sp-d16 {build.usb_flags}
 adafruit_metro_m4.build.ldscript=linker_scripts/gcc/flash_with_bootloader.ld
+adafruit_metro_m4.build.openocdscript=scripts/openocd/daplink_samd51.cfg
 adafruit_metro_m4.build.variant=metro_m4
 adafruit_metro_m4.build.variant_system_lib=
 adafruit_metro_m4.build.vid=0x239A
@@ -1219,11 +1151,6 @@ adafruit_metro_m4.menu.debug.off=Off
 adafruit_metro_m4.menu.debug.on=On
 adafruit_metro_m4.menu.debug.on.build.flags.debug=-g
 
-# Menu: Debugger
-adafruit_metro_m4.menu.debugger.daplink=CMSIS-DAP (DAPLink)
-adafruit_metro_m4.menu.debugger.daplink.build.openocdscript=scripts/openocd/daplink_samd51.cfg
-adafruit_metro_m4.menu.debugger.jlink=J-Link
-adafruit_metro_m4.menu.debugger.jlink.build.openocdscript=scripts/openocd/jlink_samd51.cfg
 
 # -----------------------------------
 # Adafruit Grand Central M4 (SAMD51)
@@ -1256,6 +1183,7 @@ adafruit_grandcentral_m4.build.board=GRAND_CENTRAL_M4
 adafruit_grandcentral_m4.build.core=arduino
 adafruit_grandcentral_m4.build.extra_flags=-D__SAMD51P20A__ -DADAFRUIT_GRAND_CENTRAL_M4 -D__SAMD51__ -D__FPU_PRESENT -DARM_MATH_CM4 -mfloat-abi=hard -mfpu=fpv4-sp-d16 {build.usb_flags}
 adafruit_grandcentral_m4.build.ldscript=linker_scripts/gcc/flash_with_bootloader.ld
+adafruit_grandcentral_m4.build.openocdscript=scripts/openocd/daplink_samd51.cfg
 adafruit_grandcentral_m4.build.variant=grand_central_m4
 adafruit_grandcentral_m4.build.variant_system_lib=
 adafruit_grandcentral_m4.build.vid=0x239A
@@ -1308,11 +1236,6 @@ adafruit_grandcentral_m4.menu.debug.off=Off
 adafruit_grandcentral_m4.menu.debug.on=On
 adafruit_grandcentral_m4.menu.debug.on.build.flags.debug=-g
 
-# Menu: Debugger
-adafruit_grandcentral_m4.menu.debugger.daplink=CMSIS-DAP (DAPLink)
-adafruit_grandcentral_m4.menu.debugger.daplink.build.openocdscript=scripts/openocd/daplink_samd51.cfg
-adafruit_grandcentral_m4.menu.debugger.jlink=J-Link
-adafruit_grandcentral_m4.menu.debugger.jlink.build.openocdscript=scripts/openocd/jlink_samd51.cfg
 
 # -----------------------------------
 # Adafruit ItsyBitsy M4 (SAMD51)
@@ -1343,6 +1266,7 @@ adafruit_itsybitsy_m4.build.board=ITSYBITSY_M4
 adafruit_itsybitsy_m4.build.core=arduino
 adafruit_itsybitsy_m4.build.extra_flags=-D__SAMD51G19A__ -DCRYSTALLESS -DADAFRUIT_ITSYBITSY_M4_EXPRESS -D__SAMD51__ -D__FPU_PRESENT -DARM_MATH_CM4 -mfloat-abi=hard -mfpu=fpv4-sp-d16 {build.usb_flags}
 adafruit_itsybitsy_m4.build.ldscript=linker_scripts/gcc/flash_with_bootloader.ld
+adafruit_itsybitsy_m4.build.openocdscript=scripts/openocd/daplink_samd51.cfg
 adafruit_itsybitsy_m4.build.variant=itsybitsy_m4
 adafruit_itsybitsy_m4.build.variant_system_lib=
 adafruit_itsybitsy_m4.build.vid=0x239A
@@ -1395,11 +1319,6 @@ adafruit_itsybitsy_m4.menu.debug.off=Off
 adafruit_itsybitsy_m4.menu.debug.on=On
 adafruit_itsybitsy_m4.menu.debug.on.build.flags.debug=-g
 
-# Menu: Debugger
-adafruit_itsybitsy_m4.menu.debugger.daplink=CMSIS-DAP (DAPLink)
-adafruit_itsybitsy_m4.menu.debugger.daplink.build.openocdscript=scripts/openocd/daplink_samd51.cfg
-adafruit_itsybitsy_m4.menu.debugger.jlink=J-Link
-adafruit_itsybitsy_m4.menu.debugger.jlink.build.openocdscript=scripts/openocd/jlink_samd51.cfg
 
 # -----------------------------------
 # Adafruit Feather M4 Express (SAMD51)
@@ -1432,6 +1351,7 @@ adafruit_feather_m4.build.board=FEATHER_M4
 adafruit_feather_m4.build.core=arduino
 adafruit_feather_m4.build.extra_flags=-D__SAMD51J19A__ -DADAFRUIT_FEATHER_M4_EXPRESS -D__SAMD51__ -D__FPU_PRESENT -DARM_MATH_CM4 -mfloat-abi=hard -mfpu=fpv4-sp-d16 {build.usb_flags}
 adafruit_feather_m4.build.ldscript=linker_scripts/gcc/flash_with_bootloader.ld
+adafruit_feather_m4.build.openocdscript=scripts/openocd/daplink_samd51.cfg
 adafruit_feather_m4.build.variant=feather_m4
 adafruit_feather_m4.build.variant_system_lib=
 adafruit_feather_m4.build.vid=0x239A
@@ -1484,11 +1404,6 @@ adafruit_feather_m4.menu.debug.off=Off
 adafruit_feather_m4.menu.debug.on=On
 adafruit_feather_m4.menu.debug.on.build.flags.debug=-g
 
-# Menu: Debugger
-adafruit_feather_m4.menu.debugger.daplink=CMSIS-DAP (DAPLink)
-adafruit_feather_m4.menu.debugger.daplink.build.openocdscript=scripts/openocd/daplink_samd51.cfg
-adafruit_feather_m4.menu.debugger.jlink=J-Link
-adafruit_feather_m4.menu.debugger.jlink.build.openocdscript=scripts/openocd/jlink_samd51.cfg
 
 # -----------------------------------
 # Adafruit Feather M4 CAN (SAME51)
@@ -1519,6 +1434,7 @@ adafruit_feather_m4_can.build.board=FEATHER_M4_CAN
 adafruit_feather_m4_can.build.core=arduino
 adafruit_feather_m4_can.build.extra_flags=-D__SAME51J19A__ -DADAFRUIT_FEATHER_M4_EXPRESS -DADAFRUIT_FEATHER_M4_CAN -D__SAMD51__ -D__FPU_PRESENT -DARM_MATH_CM4 -mfloat-abi=hard -mfpu=fpv4-sp-d16 {build.usb_flags}
 adafruit_feather_m4_can.build.ldscript=linker_scripts/gcc/flash_with_bootloader.ld
+adafruit_feather_m4_can.build.openocdscript=scripts/openocd/daplink_samd51.cfg
 adafruit_feather_m4_can.build.variant=feather_m4_can
 adafruit_feather_m4_can.build.variant_system_lib=
 adafruit_feather_m4_can.build.vid=0x239A
@@ -1571,11 +1487,6 @@ adafruit_feather_m4_can.menu.debug.off=Off
 adafruit_feather_m4_can.menu.debug.on=On
 adafruit_feather_m4_can.menu.debug.on.build.flags.debug=-g
 
-# Menu: Debugger
-adafruit_feather_m4_can.menu.debugger.daplink=CMSIS-DAP (DAPLink)
-adafruit_feather_m4_can.menu.debugger.daplink.build.openocdscript=scripts/openocd/daplink_samd51.cfg
-adafruit_feather_m4_can.menu.debugger.jlink=J-Link
-adafruit_feather_m4_can.menu.debugger.jlink.build.openocdscript=scripts/openocd/jlink_samd51.cfg
 
 # -----------------------------------
 # Adafruit Trellis M4 (SAMD51)
@@ -1608,6 +1519,7 @@ adafruit_trellis_m4.build.board=TRELLIS_M4
 adafruit_trellis_m4.build.core=arduino
 adafruit_trellis_m4.build.extra_flags=-D__SAMD51G19A__ -DCRYSTALLESS -DADAFRUIT_TRELLIS_M4_EXPRESS -D__SAMD51__ -D__FPU_PRESENT -DARM_MATH_CM4 -mfloat-abi=hard -mfpu=fpv4-sp-d16 {build.usb_flags}
 adafruit_trellis_m4.build.ldscript=linker_scripts/gcc/flash_with_bootloader.ld
+adafruit_trellis_m4.build.openocdscript=scripts/openocd/daplink_samd51.cfg
 adafruit_trellis_m4.build.variant=trellis_m4
 adafruit_trellis_m4.build.variant_system_lib=
 adafruit_trellis_m4.build.vid=0x239A
@@ -1660,11 +1572,6 @@ adafruit_trellis_m4.menu.debug.off=Off
 adafruit_trellis_m4.menu.debug.on=On
 adafruit_trellis_m4.menu.debug.on.build.flags.debug=-g
 
-# Menu: Debugger
-adafruit_trellis_m4.menu.debugger.daplink=CMSIS-DAP (DAPLink)
-adafruit_trellis_m4.menu.debugger.daplink.build.openocdscript=scripts/openocd/daplink_samd51.cfg
-adafruit_trellis_m4.menu.debugger.jlink=J-Link
-adafruit_trellis_m4.menu.debugger.jlink.build.openocdscript=scripts/openocd/jlink_samd51.cfg
 
 # -----------------------------------
 # Adafruit PyPortal M4 (SAMD51)
@@ -1697,6 +1604,7 @@ adafruit_pyportal_m4.build.board=PYPORTAL_M4
 adafruit_pyportal_m4.build.core=arduino
 adafruit_pyportal_m4.build.extra_flags=-D__SAMD51J20A__ -DCRYSTALLESS -DADAFRUIT_PYPORTAL -D__SAMD51__ -D__FPU_PRESENT -DARM_MATH_CM4 -mfloat-abi=hard -mfpu=fpv4-sp-d16 {build.usb_flags}
 adafruit_pyportal_m4.build.ldscript=linker_scripts/gcc/flash_with_bootloader.ld
+adafruit_pyportal_m4.build.openocdscript=scripts/openocd/daplink_samd51.cfg
 adafruit_pyportal_m4.build.variant=pyportal_m4
 adafruit_pyportal_m4.build.variant_system_lib=
 adafruit_pyportal_m4.build.vid=0x239A
@@ -1749,11 +1657,6 @@ adafruit_pyportal_m4.menu.debug.off=Off
 adafruit_pyportal_m4.menu.debug.on=On
 adafruit_pyportal_m4.menu.debug.on.build.flags.debug=-g
 
-# Menu: Debugger
-adafruit_pyportal_m4.menu.debugger.daplink=CMSIS-DAP (DAPLink)
-adafruit_pyportal_m4.menu.debugger.daplink.build.openocdscript=scripts/openocd/daplink_samd51.cfg
-adafruit_pyportal_m4.menu.debugger.jlink=J-Link
-adafruit_pyportal_m4.menu.debugger.jlink.build.openocdscript=scripts/openocd/jlink_samd51.cfg
 
 # -----------------------------------
 # Adafruit PyPortal M4 Titano (SAMD51)
@@ -1784,6 +1687,7 @@ adafruit_pyportal_m4_titano.build.board=PYPORTAL_M4_TITANO
 adafruit_pyportal_m4_titano.build.core=arduino
 adafruit_pyportal_m4_titano.build.extra_flags=-D__SAMD51J20A__ -DCRYSTALLESS -DADAFRUIT_PYPORTAL_M4_TITANO -D__SAMD51__ -D__FPU_PRESENT -DARM_MATH_CM4 -mfloat-abi=hard -mfpu=fpv4-sp-d16 {build.usb_flags}
 adafruit_pyportal_m4_titano.build.ldscript=linker_scripts/gcc/flash_with_bootloader.ld
+adafruit_pyportal_m4_titano.build.openocdscript=scripts/openocd/daplink_samd51.cfg
 adafruit_pyportal_m4_titano.build.variant=pyportal_m4_titano
 adafruit_pyportal_m4_titano.build.variant_system_lib=
 adafruit_pyportal_m4_titano.build.vid=0x239A
@@ -1836,11 +1740,6 @@ adafruit_pyportal_m4_titano.menu.debug.off=Off
 adafruit_pyportal_m4_titano.menu.debug.on=On
 adafruit_pyportal_m4_titano.menu.debug.on.build.flags.debug=-g
 
-# Menu: Debugger
-adafruit_pyportal_m4_titano.menu.debugger.daplink=CMSIS-DAP (DAPLink)
-adafruit_pyportal_m4_titano.menu.debugger.daplink.build.openocdscript=scripts/openocd/daplink_samd51.cfg
-adafruit_pyportal_m4_titano.menu.debugger.jlink=J-Link
-adafruit_pyportal_m4_titano.menu.debugger.jlink.build.openocdscript=scripts/openocd/jlink_samd51.cfg
 
 # -----------------------------------
 # Adafruit pyBadge M4 Express (SAMD51)
@@ -1875,6 +1774,7 @@ adafruit_pybadge_m4.build.board=PYBADGE_M4
 adafruit_pybadge_m4.build.core=arduino
 adafruit_pybadge_m4.build.extra_flags=-D__SAMD51J19A__ -DCRYSTALLESS -DADAFRUIT_PYBADGE_M4_EXPRESS -D__SAMD51__ -D__FPU_PRESENT -DARM_MATH_CM4 -mfloat-abi=hard -mfpu=fpv4-sp-d16 {build.usb_flags}
 adafruit_pybadge_m4.build.ldscript=linker_scripts/gcc/flash_with_bootloader.ld
+adafruit_pybadge_m4.build.openocdscript=scripts/openocd/daplink_samd51.cfg
 adafruit_pybadge_m4.build.variant=pybadge_m4
 adafruit_pybadge_m4.build.variant_system_lib=
 adafruit_pybadge_m4.build.vid=0x239A
@@ -1927,11 +1827,6 @@ adafruit_pybadge_m4.menu.debug.off=Off
 adafruit_pybadge_m4.menu.debug.on=On
 adafruit_pybadge_m4.menu.debug.on.build.flags.debug=-g
 
-# Menu: Debugger
-adafruit_pybadge_m4.menu.debugger.daplink=CMSIS-DAP (DAPLink)
-adafruit_pybadge_m4.menu.debugger.daplink.build.openocdscript=scripts/openocd/daplink_samd51.cfg
-adafruit_pybadge_m4.menu.debugger.jlink=J-Link
-adafruit_pybadge_m4.menu.debugger.jlink.build.openocdscript=scripts/openocd/jlink_samd51.cfg
 
 # -----------------------------------
 # Adafruit Metro M4 AirLift Lite (SAMD51)
@@ -1962,6 +1857,7 @@ adafruit_metro_m4_airliftlite.build.board=METRO_M4_AIRLIFT_LITE
 adafruit_metro_m4_airliftlite.build.core=arduino
 adafruit_metro_m4_airliftlite.build.extra_flags=-D__SAMD51J19A__ -DADAFRUIT_METRO_M4_AIRLIFT_LITE -D__SAMD51__ -D__FPU_PRESENT -DARM_MATH_CM4 -mfloat-abi=hard -mfpu=fpv4-sp-d16 {build.usb_flags}
 adafruit_metro_m4_airliftlite.build.ldscript=linker_scripts/gcc/flash_with_bootloader.ld
+adafruit_metro_m4_airliftlite.build.openocdscript=scripts/openocd/daplink_samd51.cfg
 adafruit_metro_m4_airliftlite.build.variant=metro_m4_airlift
 adafruit_metro_m4_airliftlite.build.variant_system_lib=
 adafruit_metro_m4_airliftlite.build.vid=0x239A
@@ -2014,11 +1910,6 @@ adafruit_metro_m4_airliftlite.menu.debug.off=Off
 adafruit_metro_m4_airliftlite.menu.debug.on=On
 adafruit_metro_m4_airliftlite.menu.debug.on.build.flags.debug=-g
 
-# Menu: Debugger
-adafruit_metro_m4_airliftlite.menu.debugger.daplink=CMSIS-DAP (DAPLink)
-adafruit_metro_m4_airliftlite.menu.debugger.daplink.build.openocdscript=scripts/openocd/daplink_samd51.cfg
-adafruit_metro_m4_airliftlite.menu.debugger.jlink=J-Link
-adafruit_metro_m4_airliftlite.menu.debugger.jlink.build.openocdscript=scripts/openocd/jlink_samd51.cfg
 
 # -----------------------------------
 # Adafruit PyGamer M4 Express (SAMD51)
@@ -2051,6 +1942,7 @@ adafruit_pygamer_m4.build.board=PYGAMER_M4
 adafruit_pygamer_m4.build.core=arduino
 adafruit_pygamer_m4.build.extra_flags=-D__SAMD51J19A__ -DCRYSTALLESS -DADAFRUIT_PYGAMER_M4_EXPRESS -D__SAMD51__ -D__FPU_PRESENT -DARM_MATH_CM4 -mfloat-abi=hard -mfpu=fpv4-sp-d16 {build.usb_flags}
 adafruit_pygamer_m4.build.ldscript=linker_scripts/gcc/flash_with_bootloader.ld
+adafruit_pygamer_m4.build.openocdscript=scripts/openocd/daplink_samd51.cfg
 adafruit_pygamer_m4.build.variant=pygamer_m4
 adafruit_pygamer_m4.build.variant_system_lib=
 adafruit_pygamer_m4.build.vid=0x239A
@@ -2103,11 +1995,6 @@ adafruit_pygamer_m4.menu.debug.off=Off
 adafruit_pygamer_m4.menu.debug.on=On
 adafruit_pygamer_m4.menu.debug.on.build.flags.debug=-g
 
-# Menu: Debugger
-adafruit_pygamer_m4.menu.debugger.daplink=CMSIS-DAP (DAPLink)
-adafruit_pygamer_m4.menu.debugger.daplink.build.openocdscript=scripts/openocd/daplink_samd51.cfg
-adafruit_pygamer_m4.menu.debugger.jlink=J-Link
-adafruit_pygamer_m4.menu.debugger.jlink.build.openocdscript=scripts/openocd/jlink_samd51.cfg
 
 # -----------------------------------
 # Adafruit pyBadge AirLift M4 (SAMD51)
@@ -2140,6 +2027,7 @@ adafruit_pybadge_airlift_m4.build.board=PYBADGE_AIRLIFT_M4
 adafruit_pybadge_airlift_m4.build.core=arduino
 adafruit_pybadge_airlift_m4.build.extra_flags=-D__SAMD51J20A__ -DCRYSTALLESS -DADAFRUIT_PYBADGE_AIRLIFT_M4 -D__SAMD51__ -D__FPU_PRESENT -DARM_MATH_CM4 -mfloat-abi=hard -mfpu=fpv4-sp-d16 {build.usb_flags}
 adafruit_pybadge_airlift_m4.build.ldscript=linker_scripts/gcc/flash_with_bootloader.ld
+adafruit_pybadge_airlift_m4.build.openocdscript=scripts/openocd/daplink_samd51.cfg
 adafruit_pybadge_airlift_m4.build.variant=pybadge_airlift_m4
 adafruit_pybadge_airlift_m4.build.variant_system_lib=
 adafruit_pybadge_airlift_m4.build.vid=0x239A
@@ -2192,11 +2080,6 @@ adafruit_pybadge_airlift_m4.menu.debug.off=Off
 adafruit_pybadge_airlift_m4.menu.debug.on=On
 adafruit_pybadge_airlift_m4.menu.debug.on.build.flags.debug=-g
 
-# Menu: Debugger
-adafruit_pybadge_airlift_m4.menu.debugger.daplink=CMSIS-DAP (DAPLink)
-adafruit_pybadge_airlift_m4.menu.debugger.daplink.build.openocdscript=scripts/openocd/daplink_samd51.cfg
-adafruit_pybadge_airlift_m4.menu.debugger.jlink=J-Link
-adafruit_pybadge_airlift_m4.menu.debugger.jlink.build.openocdscript=scripts/openocd/jlink_samd51.cfg
 
 # -----------------------------------
 # Adafruit MONSTER M4SK (SAMD51)
@@ -2229,6 +2112,7 @@ adafruit_monster_m4sk.build.board=MONSTER_M4SK
 adafruit_monster_m4sk.build.core=arduino
 adafruit_monster_m4sk.build.extra_flags=-D__SAMD51G19A__ -DCRYSTALLESS -DADAFRUIT_MONSTER_M4SK_EXPRESS -D__SAMD51__ -D__FPU_PRESENT -DARM_MATH_CM4 -mfloat-abi=hard -mfpu=fpv4-sp-d16 {build.usb_flags}
 adafruit_monster_m4sk.build.ldscript=linker_scripts/gcc/flash_with_bootloader.ld
+adafruit_monster_m4sk.build.openocdscript=scripts/openocd/daplink_samd51.cfg
 adafruit_monster_m4sk.build.variant=monster_m4sk
 adafruit_monster_m4sk.build.variant_system_lib=
 adafruit_monster_m4sk.build.vid=0x239A
@@ -2281,11 +2165,6 @@ adafruit_monster_m4sk.menu.debug.off=Off
 adafruit_monster_m4sk.menu.debug.on=On
 adafruit_monster_m4sk.menu.debug.on.build.flags.debug=-g
 
-# Menu: Debugger
-adafruit_monster_m4sk.menu.debugger.daplink=CMSIS-DAP (DAPLink)
-adafruit_monster_m4sk.menu.debugger.daplink.build.openocdscript=scripts/openocd/daplink_samd51.cfg
-adafruit_monster_m4sk.menu.debugger.jlink=J-Link
-adafruit_monster_m4sk.menu.debugger.jlink.build.openocdscript=scripts/openocd/jlink_samd51.cfg
 
 # -----------------------------------
 # Adafruit Hallowing M4 (SAMD51)
@@ -2318,6 +2197,7 @@ adafruit_hallowing_m4.build.board=HALLOWING_M4
 adafruit_hallowing_m4.build.core=arduino
 adafruit_hallowing_m4.build.extra_flags=-D__SAMD51J19A__ -DCRYSTALLESS -DADAFRUIT_HALLOWING_M4_EXPRESS -D__SAMD51__ -D__FPU_PRESENT -DARM_MATH_CM4 -mfloat-abi=hard -mfpu=fpv4-sp-d16 {build.usb_flags}
 adafruit_hallowing_m4.build.ldscript=linker_scripts/gcc/flash_with_bootloader.ld
+adafruit_hallowing_m4.build.openocdscript=scripts/openocd/daplink_samd51.cfg
 adafruit_hallowing_m4.build.variant=hallowing_m4
 adafruit_hallowing_m4.build.variant_system_lib=
 adafruit_hallowing_m4.build.vid=0x239A
@@ -2370,11 +2250,6 @@ adafruit_hallowing_m4.menu.debug.off=Off
 adafruit_hallowing_m4.menu.debug.on=On
 adafruit_hallowing_m4.menu.debug.on.build.flags.debug=-g
 
-# Menu: Debugger
-adafruit_hallowing_m4.menu.debugger.daplink=CMSIS-DAP (DAPLink)
-adafruit_hallowing_m4.menu.debugger.daplink.build.openocdscript=scripts/openocd/daplink_samd51.cfg
-adafruit_hallowing_m4.menu.debugger.jlink=J-Link
-adafruit_hallowing_m4.menu.debugger.jlink.build.openocdscript=scripts/openocd/jlink_samd51.cfg
 
 # -----------------------------------
 # Adafruit Matrix Portal M4 (SAMD51)
@@ -2407,6 +2282,7 @@ adafruit_matrixportal_m4.build.board=MATRIXPORTAL_M4
 adafruit_matrixportal_m4.build.core=arduino
 adafruit_matrixportal_m4.build.extra_flags=-D__SAMD51J19A__ -DCRYSTALLESS  -DADAFRUIT_MATRIXPORTAL_M4_EXPRESS -D__SAMD51__ -D__FPU_PRESENT -DARM_MATH_CM4 -mfloat-abi=hard -mfpu=fpv4-sp-d16 {build.usb_flags}
 adafruit_matrixportal_m4.build.ldscript=linker_scripts/gcc/flash_with_bootloader.ld
+adafruit_matrixportal_m4.build.openocdscript=scripts/openocd/daplink_samd51.cfg
 adafruit_matrixportal_m4.build.variant=matrixportal_m4
 adafruit_matrixportal_m4.build.variant_system_lib=
 adafruit_matrixportal_m4.build.vid=0x239A
@@ -2459,8 +2335,3 @@ adafruit_matrixportal_m4.menu.debug.off=Off
 adafruit_matrixportal_m4.menu.debug.on=On
 adafruit_matrixportal_m4.menu.debug.on.build.flags.debug=-g
 
-# Menu: Debugger
-adafruit_matrixportal_m4.menu.debugger.daplink=CMSIS-DAP (DAPLink)
-adafruit_matrixportal_m4.menu.debugger.daplink.build.openocdscript=scripts/openocd/daplink_samd51.cfg
-adafruit_matrixportal_m4.menu.debugger.jlink=J-Link
-adafruit_matrixportal_m4.menu.debugger.jlink.build.openocdscript=scripts/openocd/jlink_samd51.cfg

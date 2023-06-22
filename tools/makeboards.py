@@ -25,8 +25,9 @@ mcu_dict = {
         'build_mcu': 'cortex-m0plus',
         'f_cpu': '48000000L',
         'extra_flags': '-DARDUINO_SAMD_ZERO -DARM_MATH_CM0PLUS',
+        'openocdscript': 'scripts/openocd/daplink_samd21.cfg',
     },
-    
+
     'SAMD51': {
         'flash_size': 507904, # SAMD51P20A and SAMD51J20A has 1032192
         'data_size': 0,
@@ -34,8 +35,9 @@ mcu_dict = {
         'build_mcu': 'cortex-m4',
         'f_cpu': '120000000L',
         'extra_flags': '-D__SAMD51__ -D__FPU_PRESENT -DARM_MATH_CM4 -mfloat-abi=hard -mfpu=fpv4-sp-d16',
+        'openocdscript': 'scripts/openocd/daplink_samd51.cfg',
     },
-    
+
     'SAME51': {
         'flash_size': 507904,
         'data_size': 0,
@@ -43,6 +45,7 @@ mcu_dict = {
         'build_mcu': 'cortex-m4',
         'f_cpu': '120000000L',
         'extra_flags': '-D__SAMD51__ -D__FPU_PRESENT -DARM_MATH_CM4 -mfloat-abi=hard -mfpu=fpv4-sp-d16',
+        'openocdscript': 'scripts/openocd/daplink_samd51.cfg',
     },
 }
 
@@ -103,6 +106,7 @@ def build_build(mcu, name, variant, vendor, product, vid, pid_list, boarddefine,
         print(f"{name}.build.extra_flags={extra_flags} {mcu_properties['extra_flags']} {{build.usb_flags}}")
 
     print(f"{name}.build.ldscript=linker_scripts/gcc/flash_with_bootloader.ld")
+    print(f"{name}.build.openocdscript={mcu_properties['openocdscript']}")
     print(f"{name}.build.variant={variant}")
     print(f"{name}.build.variant_system_lib=")
     print(f"{name}.build.vid={vid}")
@@ -167,12 +171,13 @@ def build_menu(mcu, name):
     print(f"{name}.menu.debug.on.build.flags.debug=-g")
     print()
 
-    print("# Menu: Debugger")
-    script_mcu = 'samd21' if mcu == 'SAMD21' else 'samd51'
-    print(f"{name}.menu.debugger.daplink=CMSIS-DAP (DAPLink)")
-    print(f"{name}.menu.debugger.daplink.build.openocdscript=scripts/openocd/daplink_{script_mcu}.cfg")
-    print(f"{name}.menu.debugger.jlink=J-Link")
-    print(f"{name}.menu.debugger.jlink.build.openocdscript=scripts/openocd/jlink_{script_mcu}.cfg")
+    # comment out for now since debugger selection does not work, debug does not pickup the right openocd script
+    # print("# Menu: Debugger")
+    # script_mcu = 'samd21' if mcu == 'SAMD21' else 'samd51'
+    # print(f"{name}.menu.debugger.daplink=CMSIS-DAP (DAPLink)")
+    # print(f"{name}.menu.debugger.daplink.build.openocdscript=scripts/openocd/daplink_{script_mcu}.cfg")
+    # print(f"{name}.menu.debugger.jlink=J-Link")
+    # print(f"{name}.menu.debugger.jlink.build.openocdscript=scripts/openocd/jlink_{script_mcu}.cfg")
 
 
 def build_global_menu():
@@ -182,7 +187,7 @@ def build_global_menu():
     print("menu.maxqspi=Max QSPI")    
     print("menu.usbstack=USB Stack")
     print("menu.debug=Debug")
-    print("menu.debugger=Debugger")
+    #print("menu.debugger=Debugger")
 
 
 def make_board(mcu, name, variant, vendor, product, vid, pid_list, boarddefine, extra_flags, bootloader):
