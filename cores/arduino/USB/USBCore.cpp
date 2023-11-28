@@ -110,12 +110,12 @@ static EPHandler *epHandlers[7] = {NULL, NULL, NULL, NULL, NULL, NULL, NULL};
 // Send a USB descriptor string. The string is stored as a
 // plain ASCII string but is sent out as UTF-16 with the
 // correct 2-byte prefix
-bool USBDeviceClass::sendStringDescriptor(const uint8_t *string, uint32_t maxlen)
+bool USBDeviceClass::sendStringDescriptor(const uint8_t *string, uint8_t maxlen)
 {
 	if (maxlen < 2)
 		return false;
 
-	uint8_t* buffer = (uint8_t*)malloc(maxlen);
+	uint8_t buffer[maxlen];
 	buffer[0] = strlen((const char*)string) * 2 + 2;
 	buffer[1] = 0x03;
 
@@ -126,9 +126,7 @@ bool USBDeviceClass::sendStringDescriptor(const uint8_t *string, uint32_t maxlen
 		buffer[i] = 0;
 	}
 
-	bool ret = USBDevice.sendControl(buffer, i);
-	free(buffer);
-	return ret;
+	return USBDevice.sendControl(buffer, i);
 }
 
 bool _dry_run = false;
