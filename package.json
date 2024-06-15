@@ -1,0 +1,15 @@
+{
+    "name": "framework-arduino-samd-facts-engineering",
+    "version": "1.7.13",
+    "description": "Arduino core for P1AM-200",
+    "keywords": [
+        "framework",
+        "arduino",
+        "facts-engineering",
+        "P1AM-200"
+    ],
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/trapped-dot-com/ArduinoCore-samd"
+    }
+}
